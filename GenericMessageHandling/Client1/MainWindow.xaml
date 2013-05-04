@@ -1,0 +1,26 @@
+﻿<Window x:Class="Client1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Message Client" Height="350" Width="525">
+    <WrapPanel Orientation="Horizontal">
+        <DockPanel Margin="10" Width="481">
+            <!--<Label DockPanel.Dock="Top" Content="Client"/>-->
+            <StackPanel>
+                <!--<StackPanel>
+                    <Label Content="Option: " />
+                    <TextBox x:Name="Option"/>
+                </StackPanel>-->
+                <!--<Button Content="Send" Command="{Binding SendCommand}"/>-->
+                <Button Content="GetData" Click="GetDataClick" />
+                <Button Content="GetFault" Click="GetFaultClick" />
+                <ScrollViewer>
+                    <TextBlock x:Name="ResponseText" TextWrapping="Wrap"/>
+                </ScrollViewer>
+            </StackPanel>
+        </DockPanel>
+        <!--<DockPanel Margin="10">
+            <Label DockPanel.Dock="Top" Content="Server"/>
+
+        </DockPanel>-->
+    </WrapPanel>
+</Window>

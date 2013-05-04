@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://helenaofredrik.se/mcpd/wshttp1/Greet" elementFormDefault="qualified" targetNamespace="http://helenaofredrik.se/mcpd/wshttp1/Greet" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Say">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="something" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SayResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaySlowly">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="something" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaySlowlyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaySlowlyResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

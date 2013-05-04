@@ -1,0 +1,4 @@
+﻿<%@ ServiceHost           
+    Service="Rest2WebApp.Wcf.VisitedCityService"  
+    Factory="System.ServiceModel.Activation.WebServiceHostFactory"
+    Debug="true" %>

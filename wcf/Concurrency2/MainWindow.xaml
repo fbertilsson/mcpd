@@ -1,0 +1,25 @@
+﻿<Window x:Class="Concurrency2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Concurrency2" Height="350" Width="525">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label>Number to check if prime:</Label>
+                <TextBox Text="{Binding PrimeCandidate, UpdateSourceTrigger=PropertyChanged}"
+                         Width="50"
+                         x:Name="PrimeCandidate" >
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding CheckPrimeCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+            </StackPanel>
+            <Button Command="{Binding CheckPrimeCommand}">Check if prime</Button>
+            <Label>Try entering many quickly to check concurrency.</Label>
+
+        </StackPanel>
+        <ScrollViewer>
+            <TextBlock Text="{Binding Output}" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

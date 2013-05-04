@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MyService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/DataContractService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMyService_GetCustomers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomers" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetCustomers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetSuppliers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSuppliers" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetSuppliers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSuppliersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetCustomers2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomers2" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetCustomers2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomers2Response" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetSuppliers2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSuppliers2" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetSuppliers2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSuppliers2Response" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetCustomersWithGenericList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersWithGenericList" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetCustomersWithGenericList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersWithGenericListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetSpecialNameCustList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSpecialNameCustList" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetSpecialNameCustList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSpecialNameCustListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetCurrentMoodTestingEnum_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentMoodTestingEnum" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetCurrentMoodTestingEnum_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentMoodTestingEnumResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetSnakePitfallTestingEnumPitfall_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSnakePitfallTestingEnumPitfall" />
+  </wsdl:message>
+  <wsdl:message name="IMyService_GetSnakePitfallTestingEnumPitfall_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSnakePitfallTestingEnumPitfallResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMyService">
+    <wsdl:operation name="GetCustomers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/GetCustomers" message="tns:IMyService_GetCustomers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/GetCustomersResponse" message="tns:IMyService_GetCustomers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppliers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/GetSuppliers" message="tns:IMyService_GetSuppliers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/GetSuppliersResponse" message="tns:IMyService_GetSuppliers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomers2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/GetCustomers2" message="tns:IMyService_GetCustomers2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/GetCustomers2Response" message="tns:IMyService_GetCustomers2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppliers2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/GetSuppliers2" message="tns:IMyService_GetSuppliers2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/GetSuppliers2Response" message="tns:IMyService_GetSuppliers2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersWithGenericList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/GetCustomersWithGenericList" message="tns:IMyService_GetCustomersWithGenericList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/GetCustomersWithGenericListResponse" message="tns:IMyService_GetCustomersWithGenericList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSpecialNameCustList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/GetSpecialNameCustList" message="tns:IMyService_GetSpecialNameCustList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/GetSpecialNameCustListResponse" message="tns:IMyService_GetSpecialNameCustList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentMoodTestingEnum">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/GetCurrentMoodTestingEnum" message="tns:IMyService_GetCurrentMoodTestingEnum_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/GetCurrentMoodTestingEnumResponse" message="tns:IMyService_GetCurrentMoodTestingEnum_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSnakePitfallTestingEnumPitfall">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyService/GetSnakePitfallTestingEnumPitfall" message="tns:IMyService_GetSnakePitfallTestingEnumPitfall_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyService/GetSnakePitfallTestingEnumPitfallResponse" message="tns:IMyService_GetSnakePitfallTestingEnumPitfall_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IMyService" type="tns:IMyService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCustomers">
+      <soap:operation soapAction="http://tempuri.org/IMyService/GetCustomers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppliers">
+      <soap:operation soapAction="http://tempuri.org/IMyService/GetSuppliers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomers2">
+      <soap:operation soapAction="http://tempuri.org/IMyService/GetCustomers2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppliers2">
+      <soap:operation soapAction="http://tempuri.org/IMyService/GetSuppliers2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersWithGenericList">
+      <soap:operation soapAction="http://tempuri.org/IMyService/GetCustomersWithGenericList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSpecialNameCustList">
+      <soap:operation soapAction="http://tempuri.org/IMyService/GetSpecialNameCustList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentMoodTestingEnum">
+      <soap:operation soapAction="http://tempuri.org/IMyService/GetCurrentMoodTestingEnum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSnakePitfallTestingEnumPitfall">
+      <soap:operation soapAction="http://tempuri.org/IMyService/GetSnakePitfallTestingEnumPitfall" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MyService">
+    <wsdl:port name="BasicHttpBinding_IMyService" binding="tns:BasicHttpBinding_IMyService">
+      <soap:address location="http://localhost:8080/MyService/hi" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

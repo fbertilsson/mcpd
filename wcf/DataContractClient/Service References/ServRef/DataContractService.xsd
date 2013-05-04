@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DataContractService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DataContractService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfContact">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contact" nillable="true" type="tns:Contact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContact" nillable="true" type="tns:ArrayOfContact" />
+  <xs:complexType name="Contact">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="Contact" nillable="true" type="tns:Contact" />
+  <xs:complexType name="CustomerList2">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contact" nillable="true" type="tns:Contact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerList2" nillable="true" type="tns:CustomerList2" />
+  <xs:complexType name="SupplierList2">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contact" nillable="true" type="tns:Contact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SupplierList2" nillable="true" type="tns:SupplierList2" />
+  <xs:complexType name="SpezialeContact">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="Speziale{0}" Namespace="http://schemas.datacontract.org/2004/07/DataContractService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Contact" Namespace="http://schemas.datacontract.org/2004/07/DataContractService" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contact" nillable="true" type="tns:Contact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SpezialeContact" nillable="true" type="tns:SpezialeContact" />
+  <xs:simpleType name="Moods">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Terrible" />
+      <xs:enumeration value="Bad" />
+      <xs:enumeration value="Good" />
+      <xs:enumeration value="JollyGood" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Moods" nillable="true" type="tns:Moods" />
+  <xs:simpleType name="SnakePitfall">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Python" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SnakePitfall" nillable="true" type="tns:SnakePitfall" />
+</xs:schema>

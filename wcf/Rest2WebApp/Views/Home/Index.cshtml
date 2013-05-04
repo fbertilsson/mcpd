@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                A test page for WCF REST-style services. See also the About page.
+            </p>
+        </div>
+    </section>
+}
+<h3>Cities you have visited:</h3>
+<ol class="round">
+    <li class="one">
+        <h5>Add a city</h5>
+        You can add a city to your list here:
+        <form>
+            <label for="country">Country: </label>
+            <input id="country" name="country" contenteditable="true" style="width: 30em" onkeypress="" />
+            <label for="city">City: </label>
+            <input name="city" style="width: 30em"/>
+            <br/>
+            <button type="submit">Add</button>
+            <button type="reset">Cancel</button>
+        </form>
+    </li>
+
+    <li class="two">
+        <h5>...</h5>
+        <label for="proglang">Select a programming language: </label>
+        <input id="proglang">
+ 
+
+    </li>
+
+    <li class="three">
+        <h5>...</h5>
+        <label for="country2">Country: </label>
+        <input id="country2"/>
+    </li>
+</ol>
+
+<script>
+
+    window.onload = function() {
+        var j = jQuery.noConflict();
+        $ = j;
+        // Do something with jQuery
+        //j("li h5").hide();
+            //j("#country").hide();
+            //$("content").style.display = 'none';
+
+        $( "#proglang" ).autocomplete({
+            source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]
+        });
+
+        $("#country").autocomplete({
+            dataType: 'json',
+            source: function (request, response) {
+                var theUrl = "/VisitedCityService.svc/rest/SmartCompleteCountry/" + request.term;
+                $.getJSON(
+                    theUrl,
+                    function (countries) {
+                        response(countries);
+                    }
+                );
+            }
+        });
+        
+
+        $("#country2").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "http://localhost:60304/VisitedCityService.svc/rest/SmartCompleteCountry2",
+                    dataType: "json",
+
+                    data: {
+                        p: request.term
+                    },
+                    success: function (data) {
+                        //alert(data);
+                        response(data);
+                    }
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                        alert("ajax error: " + textStatus + ", " + errorThrown);
+                });
+            },
+            minLength: 1,
+            open: function() {
+                $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+            },
+            close: function() {
+                $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+            }
+        });
+    };
+</script>
