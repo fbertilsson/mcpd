@@ -1,0 +1,7 @@
+# git ignore file
+_Resharper.*
+obj
+bin
+packages
+*.suo
+wcf-ruined
