@@ -1,7 +1,0 @@
-<Modules>
-  <Module PersistentId="2D18F08B-9A76-4274-96EA-BA222110EB95" ModuleId="wshttp1" />
-  <Module PersistentId="3CF2B895-74DB-49CB-A417-33C2DEFF6071" ModuleId="ClientWithRef" />
-  <Module PersistentId="DA40D7A9-1F9B-4410-826B-59EA72E021CE" ModuleId="CallbackService" />
-  <Module PersistentId="2656DEF1-4342-4B8A-9FCD-9474E8717E25" ModuleId="Faults1" />
-  <Module PersistentId="040131F4-F232-40BD-B5E6-40642D71BDF3" ModuleId="Rest1" />
-</Modules>
