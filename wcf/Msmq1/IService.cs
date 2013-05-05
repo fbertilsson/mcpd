@@ -2,7 +2,7 @@
 
 namespace Msmq1
 {
-    [ServiceContract]
+    [ServiceContract(Namespace = "http://fb.se/sqrt")]
     interface IService
     {
         [OperationContract(IsOneWay = true)]
