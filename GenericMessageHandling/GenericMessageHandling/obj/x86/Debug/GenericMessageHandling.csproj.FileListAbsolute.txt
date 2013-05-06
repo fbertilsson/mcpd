@@ -1,1 +1,0 @@
-C:\arb\mcpd\GenericMessageHandling\GenericMessageHandling\bin\Debug\GenericMessageHandling.exe.config
