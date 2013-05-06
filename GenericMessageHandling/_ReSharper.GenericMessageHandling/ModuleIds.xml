@@ -1,6 +1,0 @@
-<Modules>
-  <Module PersistentId="2D15612F-1C9A-4F54-A143-717CE0E28819" ModuleId="GenericMessageHandling" />
-  <Module PersistentId="B91DF1D2-B96F-4901-B4D2-6035A8ABA212" ModuleId="Host1" />
-  <Module PersistentId="EA117C55-A470-4F70-9A4A-C697FE88C7CB" ModuleId="Client1" />
-  <Module PersistentId="7D4B318D-39E5-46FC-AB4E-C15CCA06E921" ModuleId="Client1_1" />
-</Modules>

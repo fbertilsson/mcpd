@@ -22,6 +22,9 @@ namespace DataContractClient.ServRef {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -29,6 +32,19 @@ namespace DataContractClient.ServRef {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
             }
         }
         
@@ -95,50 +111,66 @@ namespace DataContractClient.ServRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetCustomers", ReplyAction="http://tempuri.org/IMyService/GetCustomersResponse")]
         DataContractClient.ServRef.Contact[] GetCustomers();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetCustomers", ReplyAction="http://tempuri.org/IMyService/GetCustomersResponse")]
-        System.Threading.Tasks.Task<DataContractClient.ServRef.Contact[]> GetCustomersAsync();
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyService/GetCustomers", ReplyAction="http://tempuri.org/IMyService/GetCustomersResponse")]
+        System.IAsyncResult BeginGetCustomers(System.AsyncCallback callback, object asyncState);
+        
+        DataContractClient.ServRef.Contact[] EndGetCustomers(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetSuppliers", ReplyAction="http://tempuri.org/IMyService/GetSuppliersResponse")]
         DataContractClient.ServRef.Contact[] GetSuppliers();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetSuppliers", ReplyAction="http://tempuri.org/IMyService/GetSuppliersResponse")]
-        System.Threading.Tasks.Task<DataContractClient.ServRef.Contact[]> GetSuppliersAsync();
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyService/GetSuppliers", ReplyAction="http://tempuri.org/IMyService/GetSuppliersResponse")]
+        System.IAsyncResult BeginGetSuppliers(System.AsyncCallback callback, object asyncState);
+        
+        DataContractClient.ServRef.Contact[] EndGetSuppliers(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetCustomers2", ReplyAction="http://tempuri.org/IMyService/GetCustomers2Response")]
         DataContractClient.ServRef.CustomerList2 GetCustomers2();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetCustomers2", ReplyAction="http://tempuri.org/IMyService/GetCustomers2Response")]
-        System.Threading.Tasks.Task<DataContractClient.ServRef.CustomerList2> GetCustomers2Async();
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyService/GetCustomers2", ReplyAction="http://tempuri.org/IMyService/GetCustomers2Response")]
+        System.IAsyncResult BeginGetCustomers2(System.AsyncCallback callback, object asyncState);
+        
+        DataContractClient.ServRef.CustomerList2 EndGetCustomers2(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetSuppliers2", ReplyAction="http://tempuri.org/IMyService/GetSuppliers2Response")]
         DataContractClient.ServRef.SupplierList2 GetSuppliers2();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetSuppliers2", ReplyAction="http://tempuri.org/IMyService/GetSuppliers2Response")]
-        System.Threading.Tasks.Task<DataContractClient.ServRef.SupplierList2> GetSuppliers2Async();
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyService/GetSuppliers2", ReplyAction="http://tempuri.org/IMyService/GetSuppliers2Response")]
+        System.IAsyncResult BeginGetSuppliers2(System.AsyncCallback callback, object asyncState);
+        
+        DataContractClient.ServRef.SupplierList2 EndGetSuppliers2(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetCustomersWithGenericList", ReplyAction="http://tempuri.org/IMyService/GetCustomersWithGenericListResponse")]
         DataContractClient.ServRef.Contact[] GetCustomersWithGenericList();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetCustomersWithGenericList", ReplyAction="http://tempuri.org/IMyService/GetCustomersWithGenericListResponse")]
-        System.Threading.Tasks.Task<DataContractClient.ServRef.Contact[]> GetCustomersWithGenericListAsync();
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyService/GetCustomersWithGenericList", ReplyAction="http://tempuri.org/IMyService/GetCustomersWithGenericListResponse")]
+        System.IAsyncResult BeginGetCustomersWithGenericList(System.AsyncCallback callback, object asyncState);
+        
+        DataContractClient.ServRef.Contact[] EndGetCustomersWithGenericList(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetSpecialNameCustList", ReplyAction="http://tempuri.org/IMyService/GetSpecialNameCustListResponse")]
         DataContractClient.ServRef.SpezialeContact GetSpecialNameCustList();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetSpecialNameCustList", ReplyAction="http://tempuri.org/IMyService/GetSpecialNameCustListResponse")]
-        System.Threading.Tasks.Task<DataContractClient.ServRef.SpezialeContact> GetSpecialNameCustListAsync();
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyService/GetSpecialNameCustList", ReplyAction="http://tempuri.org/IMyService/GetSpecialNameCustListResponse")]
+        System.IAsyncResult BeginGetSpecialNameCustList(System.AsyncCallback callback, object asyncState);
+        
+        DataContractClient.ServRef.SpezialeContact EndGetSpecialNameCustList(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetCurrentMoodTestingEnum", ReplyAction="http://tempuri.org/IMyService/GetCurrentMoodTestingEnumResponse")]
         DataContractClient.ServRef.Moods GetCurrentMoodTestingEnum();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetCurrentMoodTestingEnum", ReplyAction="http://tempuri.org/IMyService/GetCurrentMoodTestingEnumResponse")]
-        System.Threading.Tasks.Task<DataContractClient.ServRef.Moods> GetCurrentMoodTestingEnumAsync();
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyService/GetCurrentMoodTestingEnum", ReplyAction="http://tempuri.org/IMyService/GetCurrentMoodTestingEnumResponse")]
+        System.IAsyncResult BeginGetCurrentMoodTestingEnum(System.AsyncCallback callback, object asyncState);
+        
+        DataContractClient.ServRef.Moods EndGetCurrentMoodTestingEnum(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetSnakePitfallTestingEnumPitfall", ReplyAction="http://tempuri.org/IMyService/GetSnakePitfallTestingEnumPitfallResponse")]
         DataContractClient.ServRef.SnakePitfall GetSnakePitfallTestingEnumPitfall();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyService/GetSnakePitfallTestingEnumPitfall", ReplyAction="http://tempuri.org/IMyService/GetSnakePitfallTestingEnumPitfallResponse")]
-        System.Threading.Tasks.Task<DataContractClient.ServRef.SnakePitfall> GetSnakePitfallTestingEnumPitfallAsync();
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyService/GetSnakePitfallTestingEnumPitfall", ReplyAction="http://tempuri.org/IMyService/GetSnakePitfallTestingEnumPitfallResponse")]
+        System.IAsyncResult BeginGetSnakePitfallTestingEnumPitfall(System.AsyncCallback callback, object asyncState);
+        
+        DataContractClient.ServRef.SnakePitfall EndGetSnakePitfallTestingEnumPitfall(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -147,7 +179,207 @@ namespace DataContractClient.ServRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetCustomersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCustomersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public DataContractClient.ServRef.Contact[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((DataContractClient.ServRef.Contact[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSuppliersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSuppliersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public DataContractClient.ServRef.Contact[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((DataContractClient.ServRef.Contact[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetCustomers2CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCustomers2CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public DataContractClient.ServRef.CustomerList2 Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((DataContractClient.ServRef.CustomerList2)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSuppliers2CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSuppliers2CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public DataContractClient.ServRef.SupplierList2 Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((DataContractClient.ServRef.SupplierList2)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetCustomersWithGenericListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCustomersWithGenericListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public DataContractClient.ServRef.Contact[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((DataContractClient.ServRef.Contact[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSpecialNameCustListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSpecialNameCustListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public DataContractClient.ServRef.SpezialeContact Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((DataContractClient.ServRef.SpezialeContact)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetCurrentMoodTestingEnumCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCurrentMoodTestingEnumCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public DataContractClient.ServRef.Moods Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((DataContractClient.ServRef.Moods)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSnakePitfallTestingEnumPitfallCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSnakePitfallTestingEnumPitfallCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public DataContractClient.ServRef.SnakePitfall Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((DataContractClient.ServRef.SnakePitfall)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MyServiceClient : System.ServiceModel.ClientBase<DataContractClient.ServRef.IMyService>, DataContractClient.ServRef.IMyService {
+        
+        private BeginOperationDelegate onBeginGetCustomersDelegate;
+        
+        private EndOperationDelegate onEndGetCustomersDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetCustomersCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSuppliersDelegate;
+        
+        private EndOperationDelegate onEndGetSuppliersDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSuppliersCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetCustomers2Delegate;
+        
+        private EndOperationDelegate onEndGetCustomers2Delegate;
+        
+        private System.Threading.SendOrPostCallback onGetCustomers2CompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSuppliers2Delegate;
+        
+        private EndOperationDelegate onEndGetSuppliers2Delegate;
+        
+        private System.Threading.SendOrPostCallback onGetSuppliers2CompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetCustomersWithGenericListDelegate;
+        
+        private EndOperationDelegate onEndGetCustomersWithGenericListDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetCustomersWithGenericListCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSpecialNameCustListDelegate;
+        
+        private EndOperationDelegate onEndGetSpecialNameCustListDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSpecialNameCustListCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetCurrentMoodTestingEnumDelegate;
+        
+        private EndOperationDelegate onEndGetCurrentMoodTestingEnumDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetCurrentMoodTestingEnumCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSnakePitfallTestingEnumPitfallDelegate;
+        
+        private EndOperationDelegate onEndGetSnakePitfallTestingEnumPitfallDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSnakePitfallTestingEnumPitfallCompletedDelegate;
         
         public MyServiceClient() {
         }
@@ -168,68 +400,404 @@ namespace DataContractClient.ServRef {
                 base(binding, remoteAddress) {
         }
         
+        public event System.EventHandler<GetCustomersCompletedEventArgs> GetCustomersCompleted;
+        
+        public event System.EventHandler<GetSuppliersCompletedEventArgs> GetSuppliersCompleted;
+        
+        public event System.EventHandler<GetCustomers2CompletedEventArgs> GetCustomers2Completed;
+        
+        public event System.EventHandler<GetSuppliers2CompletedEventArgs> GetSuppliers2Completed;
+        
+        public event System.EventHandler<GetCustomersWithGenericListCompletedEventArgs> GetCustomersWithGenericListCompleted;
+        
+        public event System.EventHandler<GetSpecialNameCustListCompletedEventArgs> GetSpecialNameCustListCompleted;
+        
+        public event System.EventHandler<GetCurrentMoodTestingEnumCompletedEventArgs> GetCurrentMoodTestingEnumCompleted;
+        
+        public event System.EventHandler<GetSnakePitfallTestingEnumPitfallCompletedEventArgs> GetSnakePitfallTestingEnumPitfallCompleted;
+        
         public DataContractClient.ServRef.Contact[] GetCustomers() {
             return base.Channel.GetCustomers();
         }
         
-        public System.Threading.Tasks.Task<DataContractClient.ServRef.Contact[]> GetCustomersAsync() {
-            return base.Channel.GetCustomersAsync();
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetCustomers(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCustomers(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public DataContractClient.ServRef.Contact[] EndGetCustomers(System.IAsyncResult result) {
+            return base.Channel.EndGetCustomers(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetCustomers(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetCustomers(callback, asyncState);
+        }
+        
+        private object[] OnEndGetCustomers(System.IAsyncResult result) {
+            DataContractClient.ServRef.Contact[] retVal = this.EndGetCustomers(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCustomersCompleted(object state) {
+            if ((this.GetCustomersCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCustomersCompleted(this, new GetCustomersCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCustomersAsync() {
+            this.GetCustomersAsync(null);
+        }
+        
+        public void GetCustomersAsync(object userState) {
+            if ((this.onBeginGetCustomersDelegate == null)) {
+                this.onBeginGetCustomersDelegate = new BeginOperationDelegate(this.OnBeginGetCustomers);
+            }
+            if ((this.onEndGetCustomersDelegate == null)) {
+                this.onEndGetCustomersDelegate = new EndOperationDelegate(this.OnEndGetCustomers);
+            }
+            if ((this.onGetCustomersCompletedDelegate == null)) {
+                this.onGetCustomersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCustomersCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetCustomersDelegate, null, this.onEndGetCustomersDelegate, this.onGetCustomersCompletedDelegate, userState);
         }
         
         public DataContractClient.ServRef.Contact[] GetSuppliers() {
             return base.Channel.GetSuppliers();
         }
         
-        public System.Threading.Tasks.Task<DataContractClient.ServRef.Contact[]> GetSuppliersAsync() {
-            return base.Channel.GetSuppliersAsync();
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSuppliers(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSuppliers(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public DataContractClient.ServRef.Contact[] EndGetSuppliers(System.IAsyncResult result) {
+            return base.Channel.EndGetSuppliers(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSuppliers(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetSuppliers(callback, asyncState);
+        }
+        
+        private object[] OnEndGetSuppliers(System.IAsyncResult result) {
+            DataContractClient.ServRef.Contact[] retVal = this.EndGetSuppliers(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSuppliersCompleted(object state) {
+            if ((this.GetSuppliersCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSuppliersCompleted(this, new GetSuppliersCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSuppliersAsync() {
+            this.GetSuppliersAsync(null);
+        }
+        
+        public void GetSuppliersAsync(object userState) {
+            if ((this.onBeginGetSuppliersDelegate == null)) {
+                this.onBeginGetSuppliersDelegate = new BeginOperationDelegate(this.OnBeginGetSuppliers);
+            }
+            if ((this.onEndGetSuppliersDelegate == null)) {
+                this.onEndGetSuppliersDelegate = new EndOperationDelegate(this.OnEndGetSuppliers);
+            }
+            if ((this.onGetSuppliersCompletedDelegate == null)) {
+                this.onGetSuppliersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSuppliersCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSuppliersDelegate, null, this.onEndGetSuppliersDelegate, this.onGetSuppliersCompletedDelegate, userState);
         }
         
         public DataContractClient.ServRef.CustomerList2 GetCustomers2() {
             return base.Channel.GetCustomers2();
         }
         
-        public System.Threading.Tasks.Task<DataContractClient.ServRef.CustomerList2> GetCustomers2Async() {
-            return base.Channel.GetCustomers2Async();
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetCustomers2(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCustomers2(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public DataContractClient.ServRef.CustomerList2 EndGetCustomers2(System.IAsyncResult result) {
+            return base.Channel.EndGetCustomers2(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetCustomers2(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetCustomers2(callback, asyncState);
+        }
+        
+        private object[] OnEndGetCustomers2(System.IAsyncResult result) {
+            DataContractClient.ServRef.CustomerList2 retVal = this.EndGetCustomers2(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCustomers2Completed(object state) {
+            if ((this.GetCustomers2Completed != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCustomers2Completed(this, new GetCustomers2CompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCustomers2Async() {
+            this.GetCustomers2Async(null);
+        }
+        
+        public void GetCustomers2Async(object userState) {
+            if ((this.onBeginGetCustomers2Delegate == null)) {
+                this.onBeginGetCustomers2Delegate = new BeginOperationDelegate(this.OnBeginGetCustomers2);
+            }
+            if ((this.onEndGetCustomers2Delegate == null)) {
+                this.onEndGetCustomers2Delegate = new EndOperationDelegate(this.OnEndGetCustomers2);
+            }
+            if ((this.onGetCustomers2CompletedDelegate == null)) {
+                this.onGetCustomers2CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCustomers2Completed);
+            }
+            base.InvokeAsync(this.onBeginGetCustomers2Delegate, null, this.onEndGetCustomers2Delegate, this.onGetCustomers2CompletedDelegate, userState);
         }
         
         public DataContractClient.ServRef.SupplierList2 GetSuppliers2() {
             return base.Channel.GetSuppliers2();
         }
         
-        public System.Threading.Tasks.Task<DataContractClient.ServRef.SupplierList2> GetSuppliers2Async() {
-            return base.Channel.GetSuppliers2Async();
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSuppliers2(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSuppliers2(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public DataContractClient.ServRef.SupplierList2 EndGetSuppliers2(System.IAsyncResult result) {
+            return base.Channel.EndGetSuppliers2(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSuppliers2(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetSuppliers2(callback, asyncState);
+        }
+        
+        private object[] OnEndGetSuppliers2(System.IAsyncResult result) {
+            DataContractClient.ServRef.SupplierList2 retVal = this.EndGetSuppliers2(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSuppliers2Completed(object state) {
+            if ((this.GetSuppliers2Completed != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSuppliers2Completed(this, new GetSuppliers2CompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSuppliers2Async() {
+            this.GetSuppliers2Async(null);
+        }
+        
+        public void GetSuppliers2Async(object userState) {
+            if ((this.onBeginGetSuppliers2Delegate == null)) {
+                this.onBeginGetSuppliers2Delegate = new BeginOperationDelegate(this.OnBeginGetSuppliers2);
+            }
+            if ((this.onEndGetSuppliers2Delegate == null)) {
+                this.onEndGetSuppliers2Delegate = new EndOperationDelegate(this.OnEndGetSuppliers2);
+            }
+            if ((this.onGetSuppliers2CompletedDelegate == null)) {
+                this.onGetSuppliers2CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSuppliers2Completed);
+            }
+            base.InvokeAsync(this.onBeginGetSuppliers2Delegate, null, this.onEndGetSuppliers2Delegate, this.onGetSuppliers2CompletedDelegate, userState);
         }
         
         public DataContractClient.ServRef.Contact[] GetCustomersWithGenericList() {
             return base.Channel.GetCustomersWithGenericList();
         }
         
-        public System.Threading.Tasks.Task<DataContractClient.ServRef.Contact[]> GetCustomersWithGenericListAsync() {
-            return base.Channel.GetCustomersWithGenericListAsync();
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetCustomersWithGenericList(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCustomersWithGenericList(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public DataContractClient.ServRef.Contact[] EndGetCustomersWithGenericList(System.IAsyncResult result) {
+            return base.Channel.EndGetCustomersWithGenericList(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetCustomersWithGenericList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetCustomersWithGenericList(callback, asyncState);
+        }
+        
+        private object[] OnEndGetCustomersWithGenericList(System.IAsyncResult result) {
+            DataContractClient.ServRef.Contact[] retVal = this.EndGetCustomersWithGenericList(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCustomersWithGenericListCompleted(object state) {
+            if ((this.GetCustomersWithGenericListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCustomersWithGenericListCompleted(this, new GetCustomersWithGenericListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCustomersWithGenericListAsync() {
+            this.GetCustomersWithGenericListAsync(null);
+        }
+        
+        public void GetCustomersWithGenericListAsync(object userState) {
+            if ((this.onBeginGetCustomersWithGenericListDelegate == null)) {
+                this.onBeginGetCustomersWithGenericListDelegate = new BeginOperationDelegate(this.OnBeginGetCustomersWithGenericList);
+            }
+            if ((this.onEndGetCustomersWithGenericListDelegate == null)) {
+                this.onEndGetCustomersWithGenericListDelegate = new EndOperationDelegate(this.OnEndGetCustomersWithGenericList);
+            }
+            if ((this.onGetCustomersWithGenericListCompletedDelegate == null)) {
+                this.onGetCustomersWithGenericListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCustomersWithGenericListCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetCustomersWithGenericListDelegate, null, this.onEndGetCustomersWithGenericListDelegate, this.onGetCustomersWithGenericListCompletedDelegate, userState);
         }
         
         public DataContractClient.ServRef.SpezialeContact GetSpecialNameCustList() {
             return base.Channel.GetSpecialNameCustList();
         }
         
-        public System.Threading.Tasks.Task<DataContractClient.ServRef.SpezialeContact> GetSpecialNameCustListAsync() {
-            return base.Channel.GetSpecialNameCustListAsync();
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSpecialNameCustList(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSpecialNameCustList(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public DataContractClient.ServRef.SpezialeContact EndGetSpecialNameCustList(System.IAsyncResult result) {
+            return base.Channel.EndGetSpecialNameCustList(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSpecialNameCustList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetSpecialNameCustList(callback, asyncState);
+        }
+        
+        private object[] OnEndGetSpecialNameCustList(System.IAsyncResult result) {
+            DataContractClient.ServRef.SpezialeContact retVal = this.EndGetSpecialNameCustList(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSpecialNameCustListCompleted(object state) {
+            if ((this.GetSpecialNameCustListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSpecialNameCustListCompleted(this, new GetSpecialNameCustListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSpecialNameCustListAsync() {
+            this.GetSpecialNameCustListAsync(null);
+        }
+        
+        public void GetSpecialNameCustListAsync(object userState) {
+            if ((this.onBeginGetSpecialNameCustListDelegate == null)) {
+                this.onBeginGetSpecialNameCustListDelegate = new BeginOperationDelegate(this.OnBeginGetSpecialNameCustList);
+            }
+            if ((this.onEndGetSpecialNameCustListDelegate == null)) {
+                this.onEndGetSpecialNameCustListDelegate = new EndOperationDelegate(this.OnEndGetSpecialNameCustList);
+            }
+            if ((this.onGetSpecialNameCustListCompletedDelegate == null)) {
+                this.onGetSpecialNameCustListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSpecialNameCustListCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSpecialNameCustListDelegate, null, this.onEndGetSpecialNameCustListDelegate, this.onGetSpecialNameCustListCompletedDelegate, userState);
         }
         
         public DataContractClient.ServRef.Moods GetCurrentMoodTestingEnum() {
             return base.Channel.GetCurrentMoodTestingEnum();
         }
         
-        public System.Threading.Tasks.Task<DataContractClient.ServRef.Moods> GetCurrentMoodTestingEnumAsync() {
-            return base.Channel.GetCurrentMoodTestingEnumAsync();
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetCurrentMoodTestingEnum(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCurrentMoodTestingEnum(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public DataContractClient.ServRef.Moods EndGetCurrentMoodTestingEnum(System.IAsyncResult result) {
+            return base.Channel.EndGetCurrentMoodTestingEnum(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetCurrentMoodTestingEnum(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetCurrentMoodTestingEnum(callback, asyncState);
+        }
+        
+        private object[] OnEndGetCurrentMoodTestingEnum(System.IAsyncResult result) {
+            DataContractClient.ServRef.Moods retVal = this.EndGetCurrentMoodTestingEnum(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCurrentMoodTestingEnumCompleted(object state) {
+            if ((this.GetCurrentMoodTestingEnumCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCurrentMoodTestingEnumCompleted(this, new GetCurrentMoodTestingEnumCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCurrentMoodTestingEnumAsync() {
+            this.GetCurrentMoodTestingEnumAsync(null);
+        }
+        
+        public void GetCurrentMoodTestingEnumAsync(object userState) {
+            if ((this.onBeginGetCurrentMoodTestingEnumDelegate == null)) {
+                this.onBeginGetCurrentMoodTestingEnumDelegate = new BeginOperationDelegate(this.OnBeginGetCurrentMoodTestingEnum);
+            }
+            if ((this.onEndGetCurrentMoodTestingEnumDelegate == null)) {
+                this.onEndGetCurrentMoodTestingEnumDelegate = new EndOperationDelegate(this.OnEndGetCurrentMoodTestingEnum);
+            }
+            if ((this.onGetCurrentMoodTestingEnumCompletedDelegate == null)) {
+                this.onGetCurrentMoodTestingEnumCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCurrentMoodTestingEnumCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetCurrentMoodTestingEnumDelegate, null, this.onEndGetCurrentMoodTestingEnumDelegate, this.onGetCurrentMoodTestingEnumCompletedDelegate, userState);
         }
         
         public DataContractClient.ServRef.SnakePitfall GetSnakePitfallTestingEnumPitfall() {
             return base.Channel.GetSnakePitfallTestingEnumPitfall();
         }
         
-        public System.Threading.Tasks.Task<DataContractClient.ServRef.SnakePitfall> GetSnakePitfallTestingEnumPitfallAsync() {
-            return base.Channel.GetSnakePitfallTestingEnumPitfallAsync();
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSnakePitfallTestingEnumPitfall(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSnakePitfallTestingEnumPitfall(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public DataContractClient.ServRef.SnakePitfall EndGetSnakePitfallTestingEnumPitfall(System.IAsyncResult result) {
+            return base.Channel.EndGetSnakePitfallTestingEnumPitfall(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSnakePitfallTestingEnumPitfall(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetSnakePitfallTestingEnumPitfall(callback, asyncState);
+        }
+        
+        private object[] OnEndGetSnakePitfallTestingEnumPitfall(System.IAsyncResult result) {
+            DataContractClient.ServRef.SnakePitfall retVal = this.EndGetSnakePitfallTestingEnumPitfall(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSnakePitfallTestingEnumPitfallCompleted(object state) {
+            if ((this.GetSnakePitfallTestingEnumPitfallCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSnakePitfallTestingEnumPitfallCompleted(this, new GetSnakePitfallTestingEnumPitfallCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSnakePitfallTestingEnumPitfallAsync() {
+            this.GetSnakePitfallTestingEnumPitfallAsync(null);
+        }
+        
+        public void GetSnakePitfallTestingEnumPitfallAsync(object userState) {
+            if ((this.onBeginGetSnakePitfallTestingEnumPitfallDelegate == null)) {
+                this.onBeginGetSnakePitfallTestingEnumPitfallDelegate = new BeginOperationDelegate(this.OnBeginGetSnakePitfallTestingEnumPitfall);
+            }
+            if ((this.onEndGetSnakePitfallTestingEnumPitfallDelegate == null)) {
+                this.onEndGetSnakePitfallTestingEnumPitfallDelegate = new EndOperationDelegate(this.OnEndGetSnakePitfallTestingEnumPitfall);
+            }
+            if ((this.onGetSnakePitfallTestingEnumPitfallCompletedDelegate == null)) {
+                this.onGetSnakePitfallTestingEnumPitfallCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSnakePitfallTestingEnumPitfallCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSnakePitfallTestingEnumPitfallDelegate, null, this.onEndGetSnakePitfallTestingEnumPitfallDelegate, this.onGetSnakePitfallTestingEnumPitfallCompletedDelegate, userState);
         }
     }
 }

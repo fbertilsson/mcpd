@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Security;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 
@@ -11,7 +12,7 @@ namespace DataContractService
         [OperationContract]
         CustomerList GetCustomers();
 
-        [OperationContract]
+        [OperationContract(ProtectionLevel = ProtectionLevel.None)] // Just testing to change default protection level on an operation.
         SupplierList GetSuppliers();
 
         [OperationContract]
@@ -58,6 +59,7 @@ namespace DataContractService
     [DataContract]
     public class Contact
     {
+        [DataMember]
         public string Name { get; set; }
     }
 

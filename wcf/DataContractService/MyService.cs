@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataContractService
 {
@@ -11,7 +8,11 @@ namespace DataContractService
     {
         public CustomerList GetCustomers()
         {
-            throw new NotImplementedException();
+            return new CustomerList
+                {
+                    new Contact  {Name = "Ola Norman" }, 
+                    new Contact { Name = "Anders Svensson"}
+                };
         }
 
         public SupplierList GetSuppliers()
