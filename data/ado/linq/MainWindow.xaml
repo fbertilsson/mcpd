@@ -1,0 +1,27 @@
+﻿<Window x:Class="linq.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Linq" Height="350" Width="525">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+            <Label Content="Elapsed (ms): "/>
+            <TextBox Text="{Binding ElapsedMillis}" />
+        </StackPanel>
+        <WrapPanel>
+            <StackPanel>
+                <StackPanel>
+                    <Label Content="#Numbers to calculate"/>
+                    <TextBox Text="{Binding N}"/>
+                </StackPanel>
+                <GroupBox Header="Fibonnacci, exponential">
+                    <StackPanel>
+                        <CheckBox x:Name="AsParallel" Content="As parallel" IsChecked="{Binding IsParallelSelected}" />
+                        <Button Content="Run" Command="{Binding Fib1Command}" />
+                    </StackPanel>
+                </GroupBox>
+                <Button Content="Fibonacci 2, linear"  Command="{Binding Fib2Command}"/>
+            </StackPanel>
+            <TextBox Name="List" Height="300" Text="{Binding List}" />
+        </WrapPanel>
+    </DockPanel>
+</Window>

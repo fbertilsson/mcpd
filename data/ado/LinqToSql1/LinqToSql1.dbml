@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="linq2sql1" Class="LinqToSql1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=NOFREBER\NOFREBERSQL;Initial Catalog=linq2sql1;Integrated Security=True" SettingsObjectName="LinqToSql1.Properties.Settings" SettingsPropertyName="linq2sql1ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Topic" Member="Topics">
+    <Type Name="Topic">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Topic_Entry" Member="Entries" ThisKey="id" OtherKey="topicId" Type="Entry" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Entry" Member="Entries">
+    <Type Name="Entry">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="start" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="stop" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="topicId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Topic_Entry" Member="Topic" ThisKey="topicId" OtherKey="id" Type="Topic" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
