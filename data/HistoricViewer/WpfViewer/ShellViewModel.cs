@@ -27,13 +27,31 @@ namespace WpfViewer
 
         private void OnEditTagsCommand()
         {
-            var tags = m_Repository.Tags;
-            var tagsModel = new TagsViewModel(tags, m_Repository)
+            View.SetWaitCursor();
+            try
+            {
+                var mainRegion = RegionManager.Regions["MainRegion"];
+                foreach (var view in mainRegion.Views)
                 {
-                    SaveDelegate = () => m_Repository.SaveChanges()
-                };
-            var tagsView = new TagsView(tagsModel);
-            RegionManager.Regions["MainRegion"].Add(tagsView);
+                    if (view is TagsView)
+                    {
+                        mainRegion.Activate(view);
+                        return;
+                    }
+                }
+                var tags = m_Repository.Tags;
+                var tagsModel = new TagsViewModel(tags, m_Repository)
+                    {
+                        SaveDelegate = () => m_Repository.SaveChanges()
+                    };
+                var tagsView = new TagsView(tagsModel);
+                mainRegion.Add(tagsView);
+                mainRegion.Activate(tagsView);
+            }
+            finally
+            {
+                View.SetNormalCursor();
+            }
         }
 
 
@@ -42,14 +60,24 @@ namespace WpfViewer
             View.SetWaitCursor();
             try
             {
+                var mainRegion = RegionManager.Regions["MainRegion"];
+                foreach (var view in mainRegion.Views)
+                {
+                    if (view is HistoricEventsView)
+                    {
+                        mainRegion.Activate(view);
+                        return;
+                    }
+                }
+
                 var historicEvents = m_Repository.HistoricEvents;
                 var historicEventsModel = new HistoricEventsViewModel(historicEvents, m_Repository)
                     {
                         SaveDelegate = () => m_Repository.SaveChanges()
                     };
                 var historicEventsView = new HistoricEventsView(historicEventsModel);
-                Thread.Sleep(2000);
-                RegionManager.Regions["MainRegion"].Add(historicEventsView); // TODO Clear existing?
+                mainRegion.Add(historicEventsView);
+                mainRegion.Activate(historicEventsView);
             } finally {
                 View.SetNormalCursor();
             }
