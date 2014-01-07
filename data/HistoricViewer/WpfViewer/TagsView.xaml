@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="WpfViewer.TagsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:HistoricEntitiesCodeFirst="clr-namespace:HistoricEntitiesCodeFirst;assembly=HistoricEntitiesCodeFirst"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!--<Style TargetType="Button">
+                <Setter Property="Margin" Value="5, 2" />
+                <Setter Property="Padding" Value="15, 4" />
+            </Style>-->
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0" 
+                  x:Name="tagsGrid"
+                  MinHeight="20"
+                  CanUserAddRows="True"
+                  ItemsSource="{Binding ObservableTags}" 
+                  SelectionUnit="FullRow"
+                  SelectedItem="{Binding SelectedTag}"
+                  >
+        </DataGrid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Label Grid.Row="0" 
+                   Grid.Column="0" 
+                   Content="Tag:" />
+            <TextBox Grid.Row="0" 
+                   Grid.Column="1" 
+                   Text="{Binding ElementName=tagsGrid, Path=SelectedItem.Name, TargetNullValue='', FallbackValue=''}" />
+
+            <Label Grid.Row="1" 
+                   Grid.Column="0" 
+                   Content="Parent:" />
+            <ListBox 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                SelectionMode="Single"
+                Height="90"
+                ItemsSource="{Binding ParentTags}"                 
+                SelectedItem="{Binding Path=SelectedTag.Parent, TargetNullValue='', FallbackValue='', Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListView
+                Grid.Row="1"
+                Grid.Column="3"
+                ItemsSource="{Binding ParentTags}"
+                SelectionMode="Single"
+                SelectedItem="{Binding Path=SelectedTag.Parent, TargetNullValue='', FallbackValue='', Mode=TwoWay}"
+                >
+                
+            </ListView>
+        </Grid>
+        
+        <StackPanel 
+            Grid.Row="2"
+            Orientation="Vertical">
+            <StackPanel 
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <Button Command="{Binding SaveCommand}">Save</Button>
+                <Button Command="{Binding CloseCommand}">Close</Button>
+            </StackPanel>            
+        </StackPanel>
+    </Grid>
+</UserControl>
