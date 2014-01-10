@@ -4,8 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
         <Label>Historic Events</Label>
+        <DataGrid Grid.Row="1" 
+                  ItemsSource="{Binding HistoricEvents.Local}"
+                  SelectedItem="{Binding CurrentHistoricEvent}"
+                  />
+
+        <StackPanel 
+            Grid.Row="2"
+            Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label>Name</Label>
+                <TextBox 
+                    Text="{Binding CurrentHistoricEvent.Name, TargetNullValue='', FallbackValue=''}" 
+                    Width="300"     />
+                
+            </StackPanel>
+        </StackPanel>
+                    
+        <StackPanel 
+            Grid.Row="3"
+            Orientation="Vertical">
+            <StackPanel 
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <Button Command="{Binding NewCommand}">New</Button>
+                <Button Command="{Binding SaveCommand}">Save</Button>
+                <Button Command="{Binding CloseCommand}">Close</Button>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </UserControl>

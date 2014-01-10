@@ -54,6 +54,11 @@ namespace HistoricEntitiesCodeFirst
         }
 
 
+        public void Add(HistoricEvent historicEvent)
+        {
+            m_Context.HistoricEvents.Add(historicEvent);
+        }
+
         #region IDisposable
 
         private bool m_IsDisposed;
@@ -87,5 +92,6 @@ namespace HistoricEntitiesCodeFirst
         }
 
         #endregion IDisposable
+
     }
 }

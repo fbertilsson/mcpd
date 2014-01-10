@@ -8,6 +8,8 @@
         public HistoricEventsView(HistoricEventsViewModel historicEventsModel)
         {
             InitializeComponent();
+
+            DataContext = historicEventsModel;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using HistoricEntitiesCodeFirst;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
@@ -67,7 +68,7 @@ namespace WpfViewer
                     {
                         mainRegion.Activate(view);
                         return;
-                    }
+                    } 
                 }
 
                 var historicEvents = m_Repository.HistoricEvents;
