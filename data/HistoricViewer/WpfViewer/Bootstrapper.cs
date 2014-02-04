@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.Practices.Prism.Modularity;
+using System.Windows.Markup;
 using Microsoft.Practices.Prism.UnityExtensions;
 using Microsoft.Practices.Unity;
 
@@ -19,8 +15,11 @@ namespace WpfViewer
     {
         protected override DependencyObject CreateShell()
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("NO");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("NO");
+            var culture = new CultureInfo("sv-SE");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), 
+                new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
             PrintDataDirectoryPath();
             //var connectionString = ConfigurationManager.ConnectionStrings["localHistoric"];
             var connectionString = ConfigurationManager.ConnectionStrings["nofreberHistoric"];

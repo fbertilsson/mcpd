@@ -34,9 +34,9 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" 
                                    Style="{StaticResource TextBlockStyle}"/>
-                        <TextBlock Text="{Binding TimeReference.Start, TargetNullValue='', FallbackValue=''}"
+                        <TextBlock Text="{Binding TimeReference.Start, StringFormat={}{0:d}, TargetNullValue='', FallbackValue=''}"
                                    Style="{StaticResource TextBlockStyle}"/>
-                        <TextBlock Text="{Binding TimeReference.End, TargetNullValue='', FallbackValue=''}"
+                        <TextBlock Text="{Binding TimeReference.End, StringFormat={}{0:d}, TargetNullValue='', FallbackValue=''}"
                                    Style="{StaticResource TextBlockStyle}"/>
                     </StackPanel>
                 </DataTemplate>
@@ -65,10 +65,10 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label>Start:</Label>
-                <TextBox Text="{Binding CurrentHistoricEvent.TimeReference.Start, TargetNullValue='-', FallbackValue=''}"
+                <TextBox Text="{Binding CurrentHistoricEvent.TimeReference.Start, StringFormat={}{0:d}, TargetNullValue='-', FallbackValue=''}"
                          Width="150" />
                 <Label>End:</Label>
-                <TextBox Text="{Binding CurrentHistoricEvent.TimeReference.End, TargetNullValue='-', FallbackValue=''}"
+                <TextBox Text="{Binding CurrentHistoricEvent.TimeReference.End, StringFormat={}{0:d}, TargetNullValue='-', FallbackValue=''}"
                          Width="150" />
             </StackPanel>
         </StackPanel>

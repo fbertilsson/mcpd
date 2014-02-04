@@ -1,4 +1,6 @@
-﻿using HistoricEntitiesCodeFirst;
+﻿using System.Globalization;
+using System.Threading;
+using HistoricEntitiesCodeFirst;
 using Microsoft.Practices.Prism;
 
 namespace WpfViewer
