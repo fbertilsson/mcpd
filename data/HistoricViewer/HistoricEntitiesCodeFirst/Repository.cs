@@ -23,18 +23,19 @@ namespace HistoricEntitiesCodeFirst
 
         public IQueryable<HistoricEvent> HistoricEvents
         {
-            get { return m_Context.HistoricEvents; }
+            //get { return m_Context.HistoricEvents; }
+            get { return m_Context.HistoricEvents.Include("TimeReference"); }
         }
 
         public IQueryable<Tag> Tags
         {
             get { return m_Context.Tags; }        
-        } 
+        }
 
-        //public IQueryable<TimeRef> TimeRefs
-        //{
-        //    get { return m_Context.TimeRefs; }
-        //}
+        public IQueryable<TimeRef> TimeRefs
+        {
+            get { return m_Context.TimeRefs; }
+        }
 
 
         public int SaveChanges()
@@ -57,6 +58,11 @@ namespace HistoricEntitiesCodeFirst
         public void Add(HistoricEvent historicEvent)
         {
             m_Context.HistoricEvents.Add(historicEvent);
+        }
+
+        public void Add(TimeRefSpan timeRefSpan)
+        {
+            m_Context.TimeRefs.Add(timeRefSpan);
         }
 
         #region IDisposable

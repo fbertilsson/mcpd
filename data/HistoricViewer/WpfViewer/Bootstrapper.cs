@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Practices.Prism.Modularity;
@@ -17,6 +19,8 @@ namespace WpfViewer
     {
         protected override DependencyObject CreateShell()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("NO");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("NO");
             PrintDataDirectoryPath();
             //var connectionString = ConfigurationManager.ConnectionStrings["localHistoric"];
             var connectionString = ConfigurationManager.ConnectionStrings["nofreberHistoric"];

@@ -35,7 +35,7 @@ namespace HistoricEntitiesCodeFirst
 
         public DbSet<HistoricEvent> HistoricEvents { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        //public DbSet<TimeRef> TimeRefs { get; set; }
+        public DbSet<TimeRefSpan> TimeRefs { get; set; }
 
     }
 }

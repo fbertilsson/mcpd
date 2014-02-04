@@ -3,10 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:HistoricEntitiesCodeFirst="clr-namespace:HistoricEntitiesCodeFirst;assembly=HistoricEntitiesCodeFirst" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="500">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Margin" Value="5,0" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
@@ -14,25 +22,59 @@
         </Grid.RowDefinitions>
         
         <Label>Historic Events</Label>
-        <DataGrid Grid.Row="1" 
+        <!--<DataGrid Grid.Row="1" 
                   ItemsSource="{Binding HistoricEvents.Local}"
                   SelectedItem="{Binding CurrentHistoricEvent}"
-                  />
+                  />-->
+        <ListBox Grid.Row="2"
+                 ItemsSource="{Binding HistoricEventsList}"
+                 SelectedItem="{Binding CurrentHistoricEvent}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="HistoricEntitiesCodeFirst:HistoricEvent">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" 
+                                   Style="{StaticResource TextBlockStyle}"/>
+                        <TextBlock Text="{Binding TimeReference.Start, TargetNullValue='', FallbackValue=''}"
+                                   Style="{StaticResource TextBlockStyle}"/>
+                        <TextBlock Text="{Binding TimeReference.End, TargetNullValue='', FallbackValue=''}"
+                                   Style="{StaticResource TextBlockStyle}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <StackPanel 
-            Grid.Row="2"
+            Grid.Row="3"
             Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Label>Name</Label>
-                <TextBox 
-                    Text="{Binding CurrentHistoricEvent.Name, TargetNullValue='', FallbackValue=''}" 
-                    Width="300"     />
+            <StackPanel.Resources>
                 
+                <ResourceDictionary>
+                    
+                    <Style TargetType="Label">
+                        <Setter Property="Width" Value="90" />
+                    </Style>
+                    
+                </ResourceDictionary>
+            </StackPanel.Resources>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Name:</Label>
+                    <TextBox Text="{Binding CurrentHistoricEvent.Name, TargetNullValue='', FallbackValue=''}"
+                             Width="300" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Start:</Label>
+                <TextBox Text="{Binding CurrentHistoricEvent.TimeReference.Start, TargetNullValue='-', FallbackValue=''}"
+                         Width="150" />
+                <Label>End:</Label>
+                <TextBox Text="{Binding CurrentHistoricEvent.TimeReference.End, TargetNullValue='-', FallbackValue=''}"
+                         Width="150" />
             </StackPanel>
         </StackPanel>
                     
         <StackPanel 
-            Grid.Row="3"
+            Grid.Row="4"
             Orientation="Vertical">
             <StackPanel 
                 Orientation="Horizontal"

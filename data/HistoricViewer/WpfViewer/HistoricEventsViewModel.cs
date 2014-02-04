@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using HistoricEntitiesCodeFirst;
 using Microsoft.Practices.Prism.Commands;
@@ -14,6 +15,8 @@ namespace WpfViewer
         {
             get { return m_HistoricEvents; }
         }
+
+        public IList<HistoricEvent> HistoricEventsList { get; private set; }
 
         public DelegateCommand CloseCommand { get; private set; }
         
@@ -37,7 +40,7 @@ namespace WpfViewer
         public HistoricEventsViewModel(IQueryable<HistoricEvent> historicEvents, Repository repository)
         {
             m_HistoricEvents = historicEvents;
-            historicEvents.ToList();
+            HistoricEventsList = m_HistoricEvents.ToList();
             m_Repository = repository;
 
             CloseCommand = new DelegateCommand(OnClose);
@@ -63,8 +66,10 @@ namespace WpfViewer
 
         private void OnNew()
         {
-            m_CurrentHistoricEvent = new HistoricEvent {Name = "New"};
+            var timeRefSpan = new TimeRefSpan();
+            m_CurrentHistoricEvent = new HistoricEvent {Name = "New", TimeReference = timeRefSpan};
             m_Repository.Add(m_CurrentHistoricEvent);
+            m_Repository.Add(timeRefSpan);
             RaisePropertyChanged(() => CurrentHistoricEvent);
         }
 
