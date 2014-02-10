@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.ViewModel;
 
@@ -30,6 +31,7 @@ namespace linq
 
         public DelegateCommand Fib1Command { get; private set; }
         public DelegateCommand Fib2Command { get; private set; }
+        public DelegateCommand GroupingCommand { get; private set; }
         public DelegateCommand XmlDomAllBarAttributesCommand { get; private set; }
         public DelegateCommand XmlDomSumBarAttributesCommand { get; private set; }
 
@@ -69,6 +71,7 @@ namespace linq
             Fib2Command = new DelegateCommand(OnFibonacci2Command);
             XmlDomAllBarAttributesCommand = new DelegateCommand(OnXmlDomAllBarAttributesCommand);
             XmlDomSumBarAttributesCommand = new DelegateCommand(OnXmlDomSumBarAttributesCommand);
+            GroupingCommand = new DelegateCommand(OnGroupingCommand);
             N = 30;
 
             XmlInput = @"<?xml version='1.0'?>
@@ -124,6 +127,54 @@ namespace linq
         private static string Format(IEnumerable<long> fib)
         {
             return fib.Aggregate(string.Empty, (prefix, element) => string.Format("{0}\n{1}", prefix, element.ToString(CultureInfo.InvariantCulture)));
+        }
+
+
+        
+        private void OnGroupingCommand()
+        {
+            var result = new StringBuilder();
+
+            var cultures = new[]
+                {
+                    new CultureInfo("nb-NO"),
+                    new CultureInfo("nn-NO"),
+                    new CultureInfo("sv-SE"),
+                    new CultureInfo("sv-FI")
+                };
+
+            var culturesGrouped =
+                from c in cultures
+                group c by c.TwoLetterISOLanguageName
+                into grouped
+                select new
+                    {
+                        LanguageName = grouped.Key,
+                        LanguageCount = grouped.Sum(x => 1)
+                    };
+            result.Append("Cultures 1:\n");
+            foreach (var g in culturesGrouped)
+            {
+                result.Append(string.Format("  Language: {0}, Count: {1}\n", g.LanguageName, g.LanguageCount));
+            }
+
+
+            var culturesGrouped2 =
+                from c in cultures
+                group c by c.ThreeLetterISOLanguageName
+                into grouped
+                select new
+                    {
+                        ThreeLetterName = grouped.Key,
+                        LanguageCount = grouped.Count(),
+                        Langs = cultures.Where(x => x.ThreeLetterISOLanguageName.Equals(grouped.Key))
+                    };
+            result.Append("Cultures 2:\n");
+            foreach (var g in culturesGrouped2)
+            {
+                result.Append(string.Format("  Language: {0}, Count: {1}\n", g.ThreeLetterName, g.LanguageCount));
+            }
+            List = result.ToString();
         }
 
 
