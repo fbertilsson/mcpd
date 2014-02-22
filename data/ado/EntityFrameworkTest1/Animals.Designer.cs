@@ -1,4 +1,4 @@
-﻿// Default code generation is disabled for model 'C:\arb\mcpd\data\ado\EntityFrameworkTest1\Animals.edmx'. 
+﻿// Default code generation is disabled for model 'D:\backupFöreWin8migrering\arb\mcpd\data\ado\EntityFrameworkTest1\Animals.edmx'. 
 // To enable default code generation, change the value of the 'Code Generation Strategy' designer
 // property to an alternate value. This property is available in the Properties Window when the model is
 // open in the designer.

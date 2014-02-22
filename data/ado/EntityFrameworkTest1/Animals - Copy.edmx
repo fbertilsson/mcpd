@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx"><!-- EF Runtime content --><edmx:Runtime><!-- SSDL content --><edmx:StorageModels>
+    <Schema Namespace="Animals.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AnimalsStoreContainer">
+    <EntitySet Name="AnimalSet" EntityType="Animals.Store.AnimalSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HabitatSet" EntityType="Animals.Store.HabitatSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonSet" EntityType="Animals.Store.PersonSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AnimalSet_Dog" EntityType="Animals.Store.AnimalSet_Dog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AnimalSet_Monkey" EntityType="Animals.Store.AnimalSet_Monkey" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonSet_Instructor" EntityType="Animals.Store.PersonSet_Instructor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonSet_Student" EntityType="Animals.Store.PersonSet_Student" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AnimalHabitat" EntityType="Animals.Store.AnimalHabitat" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_AnimalHabitat_Animal" Association="Animals.Store.FK_AnimalHabitat_Animal">
+      <End Role="Animal" EntitySet="AnimalSet" />
+      <End Role="AnimalHabitat" EntitySet="AnimalHabitat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnimalHabitat_Habitat" Association="Animals.Store.FK_AnimalHabitat_Habitat">
+      <End Role="Habitat" EntitySet="HabitatSet" />
+      <End Role="AnimalHabitat" EntitySet="AnimalHabitat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dog_inherits_Animal" Association="Animals.Store.FK_Dog_inherits_Animal">
+      <End Role="Animal" EntitySet="AnimalSet" />
+      <End Role="Dog" EntitySet="AnimalSet_Dog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Monkey_inherits_Animal" Association="Animals.Store.FK_Monkey_inherits_Animal">
+      <End Role="Animal" EntitySet="AnimalSet" />
+      <End Role="Monkey" EntitySet="AnimalSet_Monkey" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instructor_inherits_Person" Association="Animals.Store.FK_Instructor_inherits_Person">
+      <End Role="Person" EntitySet="PersonSet" />
+      <End Role="Instructor" EntitySet="PersonSet_Instructor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_inherits_Person" Association="Animals.Store.FK_Student_inherits_Person">
+      <End Role="Person" EntitySet="PersonSet" />
+      <End Role="Student" EntitySet="PersonSet_Student" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AnimalSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RaceName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HabitatSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AnimalSet_Dog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="PetName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AnimalSet_Monkey">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="MonkeySpecial" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonSet_Instructor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="HireDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonSet_Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="EnrollmentDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AnimalHabitat">
+    <Key>
+      <PropertyRef Name="Animal_Id" />
+      <PropertyRef Name="Habitat_Id" />
+    </Key>
+    <Property Name="Animal_Id" Type="int" Nullable="false" />
+    <Property Name="Habitat_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AnimalHabitat_Animal">
+    <End Role="Animal" Type="Animals.Store.AnimalSet" Multiplicity="1" />
+    <End Role="AnimalHabitat" Type="Animals.Store.AnimalHabitat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AnimalHabitat">
+        <PropertyRef Name="Animal_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnimalHabitat_Habitat">
+    <End Role="AnimalHabitat" Type="Animals.Store.AnimalHabitat" Multiplicity="*" />
+    <End Role="Habitat" Type="Animals.Store.HabitatSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Habitat">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AnimalHabitat">
+        <PropertyRef Name="Habitat_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dog_inherits_Animal">
+    <End Role="Animal" Type="Animals.Store.AnimalSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Dog" Type="Animals.Store.AnimalSet_Dog" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dog">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Monkey_inherits_Animal">
+    <End Role="Animal" Type="Animals.Store.AnimalSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Monkey" Type="Animals.Store.AnimalSet_Monkey" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Monkey">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instructor_inherits_Person">
+    <End Role="Person" Type="Animals.Store.PersonSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Instructor" Type="Animals.Store.PersonSet_Instructor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Instructor">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_inherits_Person">
+    <End Role="Person" Type="Animals.Store.PersonSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Student" Type="Animals.Store.PersonSet_Student" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels><!-- CSDL content --><edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Animals" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="AnimalsContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AnimalSet" EntityType="Animals.Animal"/>
+          <EntitySet Name="HabitatSet" EntityType="Animals.Habitat"/>
+          <AssociationSet Name="AnimalHabitat" Association="Animals.AnimalHabitat">
+            <End Role="Animal" EntitySet="AnimalSet"/>
+            <End Role="Habitat" EntitySet="HabitatSet"/>
+          </AssociationSet>
+          <EntitySet Name="PersonSet" EntityType="Animals.Person"/>
+        </EntityContainer>
+        <EntityType Name="Animal" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id"/>
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity"/>
+          <Property Type="String" Name="RaceName" Nullable="false"/>
+          <NavigationProperty Name="Habitat" Relationship="Animals.AnimalHabitat" FromRole="Animal" ToRole="Habitat"/>
+        </EntityType>
+        <EntityType Name="Habitat">
+          <Key>
+            <PropertyRef Name="Id"/>
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity"/>
+          <NavigationProperty Name="Animal" Relationship="Animals.AnimalHabitat" FromRole="Habitat" ToRole="Animal"/>
+          <Property Type="String" Name="Name" Nullable="false"/>
+        </EntityType>
+        <Association Name="AnimalHabitat">
+          <End Type="Animals.Animal" Role="Animal" Multiplicity="*"/>
+          <End Type="Animals.Habitat" Role="Habitat" Multiplicity="*"/>
+        </Association>
+        <EntityType Name="Dog" BaseType="Animals.Animal">
+          <Property Type="String" Name="PetName" Nullable="false"/>
+        </EntityType>
+        <EntityType Name="Monkey" BaseType="Animals.Animal">
+          <Property Type="String" Name="MonkeySpecial" Nullable="false"/>
+        </EntityType>
+        <EntityType Name="Person" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id"/>
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity"/>
+        </EntityType>
+        <EntityType Name="Instructor" BaseType="Animals.Person">
+          <Property Type="String" Name="HireDate" Nullable="false"/>
+        </EntityType>
+        <EntityType Name="Student" BaseType="Animals.Person">
+          <Property Type="String" Name="EnrollmentDate" Nullable="false"/>
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels><!-- C-S mapping content --><edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AnimalsStoreContainer" CdmEntityContainer="AnimalsContainer">
+    <EntitySetMapping Name="AnimalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Animals.Animal)">
+        <MappingFragment StoreEntitySet="AnimalSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RaceName" ColumnName="RaceName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Animals.Dog)">
+        <MappingFragment StoreEntitySet="AnimalSet_Dog">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PetName" ColumnName="PetName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Animals.Monkey)">
+        <MappingFragment StoreEntitySet="AnimalSet_Monkey">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MonkeySpecial" ColumnName="MonkeySpecial" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HabitatSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Animals.Habitat)">
+        <MappingFragment StoreEntitySet="HabitatSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Animals.Person)">
+        <MappingFragment StoreEntitySet="PersonSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Animals.Instructor)">
+        <MappingFragment StoreEntitySet="PersonSet_Instructor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Animals.Student)">
+        <MappingFragment StoreEntitySet="PersonSet_Student">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EnrollmentDate" ColumnName="EnrollmentDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AnimalHabitat" TypeName="Animals.AnimalHabitat" StoreEntitySet="AnimalHabitat">
+      <EndProperty Name="Animal">
+        <ScalarProperty Name="Id" ColumnName="Animal_Id" />
+      </EndProperty>
+      <EndProperty Name="Habitat">
+        <ScalarProperty Name="Id" ColumnName="Habitat_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime><!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) --><edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly"/>
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true"/>
+        <DesignerProperty Name="EnablePluralization" Value="False"/>
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None"/>
+      </DesignerInfoPropertySet>
+    </edmx:Options><!-- Diagram content (shape and connector positions) --><edmx:Diagrams/>
+  </edmx:Designer>
+</edmx:Edmx>

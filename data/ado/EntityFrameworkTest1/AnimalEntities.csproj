@@ -69,6 +69,9 @@
     <Compile Include="Dog.cs">
       <DependentUpon>Animals.tt</DependentUpon>
     </Compile>
+    <Compile Include="DogsSearch_Result.cs">
+      <DependentUpon>Animals.tt</DependentUpon>
+    </Compile>
     <Compile Include="Habitat.cs">
       <DependentUpon>Animals.tt</DependentUpon>
     </Compile>
@@ -112,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Animals.edmx.sql" />
+    <Content Include="MyOwnSql\DogsSearch.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
