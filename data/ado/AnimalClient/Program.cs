@@ -19,6 +19,8 @@ namespace AnimalClient
 
                 var dog = new Dog {PetName = "Lobi", RaceName = "Keeshond"};
                 ctx.AnimalSet.Add(dog);
+                dog = new Dog {PetName = "Lobster", RaceName = "Spanish Waterdog"};
+                ctx.AnimalSet.Add(dog);
 
                 // Finds nothing because nothing persisted yet
                 var searchResult = ctx.DogsSearch("Lo%");
