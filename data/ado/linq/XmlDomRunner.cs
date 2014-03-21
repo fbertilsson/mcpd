@@ -22,5 +22,12 @@ namespace linq
             var sumBar = doc.Descendants("bar").Attributes().Sum(x => int.Parse(x.Value));
             return sumBar.ToString(CultureInfo.InvariantCulture);
         }
+
+        public string ConcatenateAttributeNames(string xmlString)
+        {
+            var doc = XDocument.Parse(xmlString);
+            var attributes = doc.Descendants().Attributes().Aggregate(string.Empty, (first, a) => first + a.Name);
+            return attributes;
+        }
     }
 }

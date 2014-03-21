@@ -16,7 +16,7 @@
                 <GroupBox Header="Fibonnacci, exponential">
                     <StackPanel>
                         <CheckBox x:Name="AsParallel" Content="As parallel" IsChecked="{Binding IsParallelSelected}" />
-                        <Button Content="GetAllBarAttributes" Command="{Binding Fib1Command}" />
+                        <Button Content="Fibonnaci" Command="{Binding Fib1Command}" />
                     </StackPanel>
                 </GroupBox>
                 <Button Content="Fibonacci 2, linear"  Command="{Binding Fib2Command}"/>
@@ -28,6 +28,7 @@
                 <TextBox Text="{Binding XmlInput}" MinWidth="200" MinHeight="100" AcceptsReturn="True"/>
                 <Button Content="XML DOM All Bar Attributes" Command="{Binding XmlDomAllBarAttributesCommand}" />
                 <Button Content="XML DOM Sum Bar Attributes" Command="{Binding XmlDomSumBarAttributesCommand}" />
+                <Button Content="XML DOM Concatenate Attribute Names" Command="{Binding XmlDomConcatenateAttributeNamesCommand}" />
                 <TextBlock Text="{Binding XmlOutput}" MinWidth="200" MinHeight="100"/>
             </StackPanel>
         </WrapPanel>

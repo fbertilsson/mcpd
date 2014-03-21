@@ -34,6 +34,7 @@ namespace linq
         public DelegateCommand GroupingCommand { get; private set; }
         public DelegateCommand XmlDomAllBarAttributesCommand { get; private set; }
         public DelegateCommand XmlDomSumBarAttributesCommand { get; private set; }
+        public DelegateCommand XmlDomConcatenateAttributeNamesCommand { get; set; }
 
         private IFibonacciView View { get; set; }
 
@@ -71,6 +72,7 @@ namespace linq
             Fib2Command = new DelegateCommand(OnFibonacci2Command);
             XmlDomAllBarAttributesCommand = new DelegateCommand(OnXmlDomAllBarAttributesCommand);
             XmlDomSumBarAttributesCommand = new DelegateCommand(OnXmlDomSumBarAttributesCommand);
+            XmlDomConcatenateAttributeNamesCommand = new DelegateCommand(OnXmlDomConcatenateAttributeNamesCommand);
             GroupingCommand = new DelegateCommand(OnGroupingCommand);
             N = 30;
 
@@ -172,7 +174,10 @@ namespace linq
             result.Append("Cultures 2:\n");
             foreach (var g in culturesGrouped2)
             {
-                result.Append(string.Format("  Language: {0}, Count: {1}\n", g.ThreeLetterName, g.LanguageCount));
+                result.Append(string.Format("  Language: {0}, Count: {1}, {2}\n", 
+                    g.ThreeLetterName, 
+                    g.LanguageCount,
+                    g.Langs.Aggregate(string.Empty, (first, x) => string.IsNullOrEmpty(first) ? x.ToString() : first + ", " + x)));
             }
             List = result.ToString();
         }
@@ -210,6 +215,20 @@ namespace linq
                 });
         }
 
+        private void OnXmlDomConcatenateAttributeNamesCommand()
+        {
+            Time(() =>
+                {
+                    try
+                    {
+                        XmlOutput = new XmlDomRunner().ConcatenateAttributeNames(XmlInput);
+                    }
+                    catch (Exception e)
+                    {
+                        XmlOutput = e.ToString();
+                    }
+                });
+        }
 
         private void Time(Action action)
         {
