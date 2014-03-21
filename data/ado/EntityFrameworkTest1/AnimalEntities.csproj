@@ -65,7 +65,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Animals.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AnimalExtensions.cs" />
     <Compile Include="Dog.cs">
       <DependentUpon>Animals.tt</DependentUpon>
     </Compile>

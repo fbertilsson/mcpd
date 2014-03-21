@@ -184,6 +184,12 @@
         </Function>
       </Schema></edmx:StorageModels><!-- CSDL content --><edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Animals" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <Function Name="MyModelDefinedFunctionRaceNamePlusPetName" ReturnType="Edm.String" >
+          <Parameter Name="aDog" Type="Animals.Dog"/>
+          <DefiningExpression>
+            aDog.RaceName + " " + aDog.PetName
+          </DefiningExpression>
+        </Function>
         <EntityContainer Name="AnimalsContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AnimalSet" EntityType="Animals.Animal"/>
           <EntitySet Name="HabitatSet" EntityType="Animals.Habitat"/>

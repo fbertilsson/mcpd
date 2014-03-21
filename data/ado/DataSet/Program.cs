@@ -27,7 +27,7 @@ namespace DataSet
             const string fileName = "EmptyBookTable.txt";
             bookTable.WriteXml(fileName);
 
-            bookTable.WriteXml("EmptyBookTableDiffGram.txt");
+            bookTable.WriteXml("EmptyBookTableDiffGram.txt", XmlWriteMode.DiffGram);
 
             var dataRow = bookTable.NewRow();
             dataRow["ISBN"] = "12345";
@@ -36,6 +36,7 @@ namespace DataSet
             bookTable.Rows.Add(dataRow);
 
             bookTable.WriteXml("booksOneRow.txt");
+            bookTable.WriteXml("booksOneRowDiffGram.txt", XmlWriteMode.DiffGram);
             bookTable.WriteXml("booksOneRowWithSchema.txt", XmlWriteMode.WriteSchema);
 
             bookTable.RemotingFormat = SerializationFormat.Binary;
