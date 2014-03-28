@@ -17,9 +17,11 @@ namespace OrderEntryServices
             // TODO: set rules to indicate which entity sets and service operations are visible, updatable, etc.
             // Examples:
             // config.SetEntitySetAccessRule("MyEntityset", EntitySetRights.AllRead);
-             config.SetServiceOperationAccessRule("MyServiceOperation", ServiceOperationRights.All);
+            //config.SetServiceOperationAccessRule("Customer", ServiceOperationRights.All);
 
-            config.SetEntitySetAccessRule("*", EntitySetRights.All);
+            config.SetEntitySetAccessRule("Customers", EntitySetRights.All);
+            config.SetEntitySetAccessRule("Products", EntitySetRights.AllRead);
+            config.SetEntitySetAccessRule("*", EntitySetRights.ReadSingle);
             config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V2;
         }
     }
