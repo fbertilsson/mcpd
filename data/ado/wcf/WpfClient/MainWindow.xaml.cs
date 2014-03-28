@@ -37,22 +37,30 @@ namespace WpfClient
             var uri = m_Db.BaseUri + "/Customers('ALFKI')";
 
             builder.Append(" ------------- Default -------------\n");
-            using (var webClient = new WebClient())
-            {
-                var result = webClient.DownloadString(uri);
-                builder.Append(result);
-            }
+            var result = DownloadUri(uri, false);
+            builder.Append(result);                
+            
 
             builder.Append(Environment.NewLine);
             builder.Append(" ------------- JSON    -------------\n");
-            using (var webClient = new WebClient())
-            {
-                webClient.Headers["Accept"] = "application/json";
-                var result = webClient.DownloadString(uri);
-                builder.Append(result);
-            }
+            result = DownloadUri(uri, true);
+            builder.Append(result);
 
             MessageBox.Show(builder.ToString(), "Results");
+        }
+
+        private static string DownloadUri(string uri, bool isJson)
+        {
+            string result;
+            using (var webClient = new WebClient())
+            {
+                if (isJson)
+                {
+                    webClient.Headers["Accept"] = "application/json";
+                }
+                result = webClient.DownloadString(uri);
+            }
+            return result;
         }
     }
 }
