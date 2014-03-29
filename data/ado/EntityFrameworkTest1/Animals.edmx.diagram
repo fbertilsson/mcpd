@@ -5,16 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5c9818a9c758488ca3434bdb210d9834" Name="Diagram1" ZoomLevel="114" >
-        <EntityTypeShape EntityType="Animals.Animal" Width="1.625" PointX="6.875" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Animals.Habitat" Width="1.5" PointX="10.375" PointY="4.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="Animals.Animal" Width="1.625" PointX="6.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Animals.Habitat" Width="1.5" PointX="9.75" PointY="0.875" IsExpanded="false" />
         <AssociationConnector Association="Animals.AnimalHabitat" />
-        <EntityTypeShape EntityType="Animals.Dog" Width="1.5" PointX="5.625" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Animals.Dog" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
         <InheritanceConnector EntityType="Animals.Dog" />
-        <EntityTypeShape EntityType="Animals.Monkey" Width="1.5" PointX="7.75" PointY="6" IsExpanded="false" />
+        <EntityTypeShape EntityType="Animals.Monkey" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="false" />
         <InheritanceConnector EntityType="Animals.Monkey" />
-        <EntityTypeShape EntityType="Animals.Person" Width="1.5" PointX="1.5" PointY="2.125" />
-        <EntityTypeShape EntityType="Animals.Instructor" Width="1.5" PointX="0.5" PointY="4.25" />
-        <EntityTypeShape EntityType="Animals.Student" Width="1.5" PointX="2.5" PointY="4.25" />
+        <EntityTypeShape EntityType="Animals.Person" Width="1.5" PointX="1.5" PointY="0.5" />
+        <EntityTypeShape EntityType="Animals.Instructor" Width="1.5" PointX="0.5" PointY="2.625" />
+        <EntityTypeShape EntityType="Animals.Student" Width="1.5" PointX="2.375" PointY="2.625" />
         <InheritanceConnector EntityType="Animals.Instructor" />
         <InheritanceConnector EntityType="Animals.Student" />
       </Diagram>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4794e3aa933544fba1fe178de197ef46" Name="Diagram1" >
+        <EntityTypeShape EntityType="ModelFirstEnt.BaseEntity" Width="1.5" PointX="1.625" PointY="0.5" />
+        <EntityTypeShape EntityType="ModelFirstEnt.Sub1A" Width="1.5" PointX="0.625" PointY="2.5" />
+        <EntityTypeShape EntityType="ModelFirstEnt.Sub1B" Width="1.5" PointX="2.75" PointY="2.5" />
+        <InheritanceConnector EntityType="ModelFirstEnt.Sub1A" />
+        <InheritanceConnector EntityType="ModelFirstEnt.Sub1B" />
+        <EntityTypeShape EntityType="ModelFirstEnt.TphBase" Width="1.5" PointX="7" PointY="0.5" />
+        <EntityTypeShape EntityType="ModelFirstEnt.TphSub1A" Width="1.5" PointX="5.875" PointY="2.5" />
+        <EntityTypeShape EntityType="ModelFirstEnt.TphSub1B" Width="1.5" PointX="8.125" PointY="2.5" />
+        <InheritanceConnector EntityType="ModelFirstEnt.TphSub1A" />
+        <InheritanceConnector EntityType="ModelFirstEnt.TphSub1B" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

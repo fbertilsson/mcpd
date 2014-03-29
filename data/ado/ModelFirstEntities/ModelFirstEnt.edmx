@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelFirstEnt.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelFirstEntStoreContainer">
+    <EntitySet Name="BaseEntitySet" EntityType="ModelFirstEnt.Store.BaseEntitySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TphBaseSet" EntityType="ModelFirstEnt.Store.TphBaseSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BaseEntitySet_Sub1A" EntityType="ModelFirstEnt.Store.BaseEntitySet_Sub1A" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BaseEntitySet_Sub1B" EntityType="ModelFirstEnt.Store.BaseEntitySet_Sub1B" store:Type="Tables" Schema="dbo" />
+    <!--<EntitySet Name="TphBaseSet_TphSub1A" EntityType="ModelFirstEnt.Store.TphBaseSet_TphSub1A" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TphBaseSet_TphSub1B" EntityType="ModelFirstEnt.Store.TphBaseSet_TphSub1B" store:Type="Tables" Schema="dbo" />-->
+    <AssociationSet Name="FK_Sub1A_inherits_BaseEntity" Association="ModelFirstEnt.Store.FK_Sub1A_inherits_BaseEntity">
+      <End Role="BaseEntity" EntitySet="BaseEntitySet" />
+      <End Role="Sub1A" EntitySet="BaseEntitySet_Sub1A" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sub1B_inherits_BaseEntity" Association="ModelFirstEnt.Store.FK_Sub1B_inherits_BaseEntity">
+      <End Role="BaseEntity" EntitySet="BaseEntitySet" />
+      <End Role="Sub1B" EntitySet="BaseEntitySet_Sub1B" />
+    </AssociationSet>
+    <!--<AssociationSet Name="FK_TphSub1A_inherits_TphBase" Association="ModelFirstEnt.Store.FK_TphSub1A_inherits_TphBase">
+      <End Role="TphBase" EntitySet="TphBaseSet" />
+      <End Role="TphSub1A" EntitySet="TphBaseSet_TphSub1A" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TphSub1B_inherits_TphBase" Association="ModelFirstEnt.Store.FK_TphSub1B_inherits_TphBase">
+      <End Role="TphBase" EntitySet="TphBaseSet" />
+      <End Role="TphSub1B" EntitySet="TphBaseSet_TphSub1B" />
+    </AssociationSet>-->
+  </EntityContainer>
+  <EntityType Name="BaseEntitySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Manufacturer" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TphBaseSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Manufacturer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MyDiscriminator" Type="nvarchar(max)" Nullable="true" DefaultValue="&quot;1A&quot;" />
+    <Property Name="SpecialA" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SpecialB" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="BaseEntitySet_Sub1A">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="SpecialA" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BaseEntitySet_Sub1B">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="SpecialB" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <!--<EntityType Name="TphBaseSet_TphSub1A">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="SpecialA" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TphBaseSet_TphSub1B">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="SpecialB" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>-->
+  <Association Name="FK_Sub1A_inherits_BaseEntity">
+    <End Role="BaseEntity" Type="ModelFirstEnt.Store.BaseEntitySet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sub1A" Type="ModelFirstEnt.Store.BaseEntitySet_Sub1A" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BaseEntity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sub1A">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sub1B_inherits_BaseEntity">
+    <End Role="BaseEntity" Type="ModelFirstEnt.Store.BaseEntitySet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sub1B" Type="ModelFirstEnt.Store.BaseEntitySet_Sub1B" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BaseEntity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sub1B">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--<Association Name="FK_TphSub1A_inherits_TphBase">
+    <End Role="TphBase" Type="ModelFirstEnt.Store.TphBaseSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TphSub1A" Type="ModelFirstEnt.Store.TphBaseSet_TphSub1A" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TphBase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TphSub1A">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TphSub1B_inherits_TphBase">
+    <End Role="TphBase" Type="ModelFirstEnt.Store.TphBaseSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TphSub1B" Type="ModelFirstEnt.Store.TphBaseSet_TphSub1B" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TphBase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TphSub1B">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>-->
+</Schema></edmx:StorageModels>
+    
+    
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelFirstEnt" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelFirstEntContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BaseEntitySet" EntityType="ModelFirstEnt.BaseEntity" />
+          <EntitySet Name="TphBaseSet" EntityType="ModelFirstEnt.TphBase" />
+        </EntityContainer>
+        <EntityType Name="BaseEntity">
+          <Documentation>
+            <Summary>Table-Per-Class</Summary>
+          </Documentation>
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Manufacturer" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sub1A" BaseType="ModelFirstEnt.BaseEntity">
+          <Property Name="SpecialA" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sub1B" BaseType="ModelFirstEnt.BaseEntity">
+          <Property Name="SpecialB" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TphBase" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Manufacturer" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TphSub1A" BaseType="ModelFirstEnt.TphBase">
+          <Property Name="SpecialA" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TphSub1B" BaseType="ModelFirstEnt.TphBase">
+          <Property Name="SpecialB" Type="String" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelFirstEntStoreContainer" CdmEntityContainer="ModelFirstEntContainer">
+    <EntitySetMapping Name="BaseEntitySet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFirstEnt.BaseEntity)">
+        <MappingFragment StoreEntitySet="BaseEntitySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFirstEnt.Sub1A)">
+        <MappingFragment StoreEntitySet="BaseEntitySet_Sub1A">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SpecialA" ColumnName="SpecialA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFirstEnt.Sub1B)">
+        <MappingFragment StoreEntitySet="BaseEntitySet_Sub1B">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SpecialB" ColumnName="SpecialB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TphBaseSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFirstEnt.TphBase)">
+        <MappingFragment StoreEntitySet="TphBaseSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(ModelFirstEnt.TphSub1A)">
+              <MappingFragment StoreEntitySet="TphBaseSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SpecialA" ColumnName="SpecialA" />
+                <Condition ColumnName="MyDiscriminator" Value="&quot;1A&quot;" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(ModelFirstEnt.TphSub1B)">
+              <MappingFragment StoreEntitySet="TphBaseSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SpecialB" ColumnName="SpecialB" />
+                <Condition ColumnName="MyDiscriminator" Value="&quot;1B&quot;" />
+              </MappingFragment>
+            </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
