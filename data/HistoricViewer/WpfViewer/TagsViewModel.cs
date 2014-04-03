@@ -101,11 +101,15 @@ namespace WpfViewer
             SaveCommand = new DelegateCommand(OnSaveCommand, CanSaveCommand);
         }
 
+        public Action CloseDelegate { get; set; }
+
         private void OnCloseCommand()
         {
-            throw new NotImplementedException();
+            if (CloseDelegate != null)
+            {
+                CloseDelegate();
+            }
         }
-
 
         public Action SaveDelegate { get; set; }
 

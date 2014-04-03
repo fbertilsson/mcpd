@@ -9,6 +9,7 @@ namespace WpfViewer
 {
     public class HistoricEventsViewModel : NotificationObject
     {
+        public Action CloseDelegate { get; set; }
         public Action SaveDelegate { get; set; }
 
         public IQueryable<HistoricEvent> HistoricEvents
@@ -61,7 +62,10 @@ namespace WpfViewer
 
         private void OnClose()
         {
-            throw new NotImplementedException();
+            if (CloseDelegate != null)
+            {
+                CloseDelegate();
+            }
         }
 
         private void OnNew()

@@ -56,6 +56,7 @@
                     
                 </ResourceDictionary>
             </StackPanel.Resources>
+            <TextBlock>Event details:</TextBlock>
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label>Name:</Label>

@@ -43,9 +43,11 @@ namespace WpfViewer
                 var tags = m_Repository.Tags;
                 var tagsModel = new TagsViewModel(tags, m_Repository)
                     {
-                        SaveDelegate = () => m_Repository.SaveChanges()
+                        SaveDelegate = () => m_Repository.SaveChanges(),
                     };
                 var tagsView = new TagsView(tagsModel);
+                tagsModel.CloseDelegate = () => mainRegion.Deactivate(tagsView);
+
                 mainRegion.Add(tagsView);
                 mainRegion.Activate(tagsView);
             }
@@ -77,6 +79,9 @@ namespace WpfViewer
                         SaveDelegate = () => m_Repository.SaveChanges()
                     };
                 var historicEventsView = new HistoricEventsView(historicEventsModel);
+                
+                historicEventsModel.CloseDelegate = () => mainRegion.Deactivate(historicEventsView);
+
                 mainRegion.Add(historicEventsView);
                 mainRegion.Activate(historicEventsView);
             } finally {
