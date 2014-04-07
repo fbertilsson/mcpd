@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
-using System.Linq.Expressions;
 using NorthwindPocoClient.PrismStuff;
 using NorthwindPocoEntities;
 
 namespace NorthwindPocoClient
 {
-    class MainWindowViewModel : NotificationObject
+    public class MainWindowViewModel : NotificationObject
     {
         private readonly NorthwindPocoContext m_Context;
 
         public IEnumerable<Customer> Customers {
-            get { return m_Context.Customers; }
+            get { return new ObservableCollection<Customer>(m_Context.Customers); }
         }
 
         public IEnumerable<Order> CustomerOrders
@@ -58,5 +58,40 @@ namespace NorthwindPocoClient
             m_Context = context;
         }
 
+        public void AddCustomer(Customer customer)
+        {
+            m_Context.Customers.AddObject(customer);
+        }
+
+        public void OnAddDigitToPhoneNumberTestingDetatch()
+        {
+            var customer = SelectedCustomer;
+            m_Context.Customers.Detach(customer);
+
+            var lastDigit = int.Parse(customer.Phone.Reverse().First().ToString());
+            customer.Phone += (lastDigit + 1)%10;
+            m_Context.Customers.Attach(customer);
+
+            // Trying to make the entity marked as modified
+            //m_Context.DetectChanges();                                                                 // Had no apparent effect
+            //m_Context.AcceptAllChanges();                                                              // Had no apparent effect
+            var entry = m_Context.ObjectStateManager.ChangeObjectState(customer, EntityState.Modified);  // Did the trick
+            
+            RaisePropertyChanged(() => Customers);
+        }
+
+        public void OnTruncateLastPhoneDigit()
+        {
+            var customer = SelectedCustomer;
+            customer.Phone = customer.Phone.Substring(0, customer.Phone.Length - 1);
+            RaisePropertyChanged(() => Customers);
+        }
+
+        public void Save()
+        {
+            m_Context.DetectChanges();             // Interesting that this needs to be called before save. Or maybe can get performance by setting state manually.
+            var nDirty = m_Context.SaveChanges();
+            RaisePropertyChanged(() => Customers);
+        }
     }
 }

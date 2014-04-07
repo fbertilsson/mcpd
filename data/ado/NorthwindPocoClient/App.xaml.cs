@@ -17,10 +17,7 @@ namespace NorthwindPocoClient
             var connectionString = ConfigurationManager.ConnectionStrings["NorthwindPocoEntities"].ConnectionString;
             var context = new NorthwindPocoContext(connectionString);
             var model = new MainWindowViewModel(context);
-            var view = new MainWindow
-            {
-                DataContext = model
-            };
+            var view = new MainWindow(model);
             view.Show();
         }
     }

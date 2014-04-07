@@ -11,7 +11,23 @@
             <Setter Property="Margin" Value="4"></Setter>
         </Style>
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding 
+            Command="ApplicationCommands.Save"
+            Executed="OnSave"
+            CanExecute="OnCanSave"/>
+    </Window.CommandBindings>
     <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Save" Command="ApplicationCommands.Save"/>
+            </MenuItem>
+            <MenuItem Header="_Misc">
+                <MenuItem Header="Detatch-test" Click="MenuItemDetachTest"/>
+                <MenuItem Header="Truncate last phone digit" Click="MenuItemTruncateLastPhoneDigitClick"/>
+            </MenuItem>   
+        </Menu>
+        
         <Grid DockPanel.Dock="Left"
               Margin="10, 0, 10, 30">
             <Grid.RowDefinitions>
@@ -30,6 +46,7 @@
                     <DataGridTextColumn Header="ID" Binding="{Binding CustomerID}"/>
                     <DataGridTextColumn Header="Company" Binding="{Binding CompanyName}"/>
                     <DataGridTextColumn Header="Contact" Binding="{Binding ContactName}"/>
+                    <DataGridTextColumn Header="Phone" Binding="{Binding Phone}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

@@ -1,28 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace NorthwindPocoClient
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        public MainWindow()
+        private MainWindowViewModel m_Model;
+
+        public MainWindow(MainWindowViewModel model)
         {
+            m_Model = model;
+            DataContext = model;
             InitializeComponent();
+        }
+
+        private void MenuItemDetachTest(object sender, RoutedEventArgs e)
+        {
+            m_Model.OnAddDigitToPhoneNumberTestingDetatch();
+        }
+
+        private void OnSave(object sender, ExecutedRoutedEventArgs e)
+        {
+            m_Model.Save();
+        }
+
+        private void OnCanSave(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = m_Model.SelectedCustomer != null;
+        }
+
+        private void MenuItemTruncateLastPhoneDigitClick(object sender, RoutedEventArgs e)
+        {
+            m_Model.OnTruncateLastPhoneDigit();
         }
     }
 }
