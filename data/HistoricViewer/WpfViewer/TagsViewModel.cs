@@ -115,8 +115,16 @@ namespace WpfViewer
 
         private void OnSaveCommand()
         {
-            SaveDelegate();
-            IsModified = false;
+            try
+            {
+                View.SetWaitCursor();
+                SaveDelegate();
+                IsModified = false;
+            }
+            finally
+            {
+                View.SetNormalCursor();
+            }
         }
 
         private bool CanSaveCommand()
@@ -143,9 +151,7 @@ namespace WpfViewer
         }
 
         public CollectionViewSource TagCollection { get; private set; }
-
-
-
-
+        
+        public ITagsView View { get; set; }
     }
 }

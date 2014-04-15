@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="HistoricEventsViewModel.cs" />
     <Compile Include="IShell.cs" />
+    <Compile Include="ITagsView.cs" />
     <Compile Include="TagsViewModel.cs" />
     <Compile Include="TagsView.xaml.cs">
       <DependentUpon>TagsView.xaml</DependentUpon>

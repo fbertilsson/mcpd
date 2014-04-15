@@ -46,6 +46,7 @@ namespace WpfViewer
                         SaveDelegate = () => m_Repository.SaveChanges(),
                     };
                 var tagsView = new TagsView(tagsModel);
+                tagsModel.View = tagsView;
                 tagsModel.CloseDelegate = () => mainRegion.Deactivate(tagsView);
 
                 mainRegion.Add(tagsView);

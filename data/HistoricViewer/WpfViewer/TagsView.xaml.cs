@@ -18,12 +18,22 @@ namespace WpfViewer
     /// <summary>
     /// Interaction logic for TagView.xaml
     /// </summary>
-    public partial class TagsView
+    public partial class TagsView : ITagsView
     {
         public TagsView(TagsViewModel model)
         {
             DataContext = model;
             InitializeComponent();
+        }
+
+        public void SetWaitCursor()
+        {
+            Cursor = Cursors.Wait;
+        }
+
+        public void SetNormalCursor()
+        {
+            Cursor = Cursors.Arrow;
         }
     }
 }
