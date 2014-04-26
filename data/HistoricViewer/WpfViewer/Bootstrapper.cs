@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Markup;
 using Microsoft.Practices.Prism.UnityExtensions;
 using Microsoft.Practices.Unity;
+using WpfViewer.Resolve;
 
 namespace WpfViewer
 {
@@ -51,6 +52,12 @@ namespace WpfViewer
         {
             Application.Current.MainWindow = (Shell)Shell;
             Application.Current.MainWindow.Show();
+        }
+
+        protected override void ConfigureContainer()
+        {
+            base.ConfigureContainer();
+            Container.RegisterType<IResolveView, ResolveView>(new InjectionMember[] { new InjectionConstructor() });
         }
     }
 }

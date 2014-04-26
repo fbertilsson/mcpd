@@ -25,9 +25,13 @@
                   x:Name="tagsGrid"
                   MinHeight="20"
                   CanUserAddRows="True"
+                  CanUserDeleteRows="True"
+                  IsReadOnly="False"
                   ItemsSource="{Binding ObservableTags}" 
                   SelectionUnit="FullRow"
                   SelectedItem="{Binding SelectedTag}"
+                  SelectedCellsChanged="TagsGrid_OnSelectedCellsChanged"
+                  SelectionChanged="TagsGrid_OnSelectionChanged"
                   >
         </DataGrid>
 
@@ -46,8 +50,10 @@
                    Grid.Column="0" 
                    Content="Tag:" />
             <TextBox Grid.Row="0" 
-                   Grid.Column="1" 
-                   Text="{Binding ElementName=tagsGrid, Path=SelectedItem.Name, TargetNullValue='', FallbackValue=''}" />
+                     Grid.Column="1"
+                     Text="{Binding ElementName=tagsGrid, Path=SelectedItem.Name, TargetNullValue='', FallbackValue=''}" 
+                     TextChanged="OnTextChanged"
+                     TextInput="UIElement_OnTextInput"/>
 
             <Label Grid.Row="1" 
                    Grid.Column="0" 

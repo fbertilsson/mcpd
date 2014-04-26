@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Data;
+using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Windows.Data;
 using HistoricEntitiesCodeFirst;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.ViewModel;
+using Microsoft.Practices.ServiceLocation;
+using WpfViewer.Resolve;
 
 namespace WpfViewer
 {
     public class TagsViewModel : NotificationObject
     {
-        protected bool IsModified
+        private IServiceLocator ServiceLocator { get; set; }
+
+        public bool IsModified
         {
             get { return m_IsModified; }
             set
@@ -21,6 +27,7 @@ namespace WpfViewer
                 if (value == m_IsModified) return;
                 m_IsModified = value;
                 RaisePropertyChanged(() => IsModified);
+                SaveCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -57,8 +64,9 @@ namespace WpfViewer
         private Tag m_SelectedTag;
 
 
-        public TagsViewModel(IQueryable<Tag> tags, Repository repository)
+        public TagsViewModel(IQueryable<Tag> tags, Repository repository, IServiceLocator serviceLocator)
         {
+            ServiceLocator = serviceLocator;
             //Tags = tags;
             var dummy = tags.ToList();
             ObservableTags = new ObservableCollection<Tag>(dummy);
@@ -118,13 +126,45 @@ namespace WpfViewer
             try
             {
                 View.SetWaitCursor();
-                SaveDelegate();
+
+                bool didSaveFail;
+                do
+                {
+                    didSaveFail = false;
+                    try
+                    {
+                        SaveDelegate();
+                    }
+                    catch (OptimisticConcurrencyException e)
+                    {
+                        var x = e;
+                    }
+                    catch (DbUpdateConcurrencyException e)
+                    {
+                        didSaveFail = true;
+                        LetUserResolve(e.Entries);
+
+                        Console.WriteLine(e);
+                    }
+                } while (didSaveFail); 
                 IsModified = false;
             }
             finally
             {
                 View.SetNormalCursor();
             }
+        }
+
+        private bool? LetUserResolve(IEnumerable<DbEntityEntry> entries)
+        {
+            var resolveViewModel = new ResolveViewModel(entries);
+            var view = ServiceLocator.GetInstance<IResolveView>();
+            resolveViewModel.View = view;
+            view.Model = resolveViewModel;
+
+            var dialogResult = view.ShowDialog();
+
+            return dialogResult;
         }
 
         private bool CanSaveCommand()

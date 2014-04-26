@@ -13,10 +13,10 @@
     </Window.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Left">
-            <Button x:Name="Tags" Content="Edit Tags" Command="{Binding EditTagsCommand}" TabIndex="0" IsDefault="True" />
+            <Button x:Name="Tags" Content="Edit Tags" Command="{Binding EditTagsCommand}" TabIndex="1" IsDefault="True" />
             <Button x:Name="Hhhh" Content="Edit History" Command="{Binding EditHistoryCommand}" TabIndex="10" />
         </StackPanel>
         
-        <ContentControl cal:RegionManager.RegionName="MainRegion"/>
+        <ContentControl cal:RegionManager.RegionName="MainRegion" IsTabStop="False"/>
     </DockPanel>
 </Window>

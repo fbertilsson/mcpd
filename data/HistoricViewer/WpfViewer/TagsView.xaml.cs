@@ -20,9 +20,12 @@ namespace WpfViewer
     /// </summary>
     public partial class TagsView : ITagsView
     {
+        public TagsViewModel Model { get; private set; }
+
         public TagsView(TagsViewModel model)
         {
             DataContext = model;
+            Model = model;
             InitializeComponent();
         }
 
@@ -34,6 +37,29 @@ namespace WpfViewer
         public void SetNormalCursor()
         {
             Cursor = Cursors.Arrow;
+        }
+
+        private void OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            Model.IsModified = true;
+        }
+
+        private void TagsGrid_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            IsSelectionChangeOngoing = false;
+        }
+
+        public bool IsSelectionChangeOngoing { get; set; }
+
+
+        private void TagsGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void UIElement_OnTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Never called?
         }
     }
 }

@@ -95,11 +95,20 @@
     <Compile Include="HistoricEventsViewModel.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ITagsView.cs" />
+    <Compile Include="Resolve\IResolveView.cs" />
+    <Compile Include="Resolve\ResolveView.xaml.cs">
+      <DependentUpon>ResolveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resolve\ResolveViewModel.cs" />
     <Compile Include="TagsViewModel.cs" />
     <Compile Include="TagsView.xaml.cs">
       <DependentUpon>TagsView.xaml</DependentUpon>
     </Compile>
     <Page Include="HistoricEventsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resolve\ResolveView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

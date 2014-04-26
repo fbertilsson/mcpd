@@ -4,6 +4,7 @@ using HistoricEntitiesCodeFirst;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.ViewModel;
+using Microsoft.Practices.ServiceLocation;
 
 namespace WpfViewer
 {
@@ -17,13 +18,16 @@ namespace WpfViewer
         public IShell View { get; set; }
 
         private readonly Repository m_Repository;
+        private IServiceLocator ServiceLocator { get; set; }
 
-        public ShellViewModel(IRegionManager regionManager, string connectionString)
+
+        public ShellViewModel(IRegionManager regionManager, string connectionString, IServiceLocator serviceLocator)
         {
             RegionManager = regionManager;
             EditTagsCommand = new DelegateCommand(OnEditTagsCommand);   
             EditHistoryCommand = new DelegateCommand(OnEditHistoryCommand);
             m_Repository = new Repository(connectionString);
+            ServiceLocator = serviceLocator;
         }
 
         private void OnEditTagsCommand()
@@ -41,7 +45,7 @@ namespace WpfViewer
                     }
                 }
                 var tags = m_Repository.Tags;
-                var tagsModel = new TagsViewModel(tags, m_Repository)
+                var tagsModel = new TagsViewModel(tags, m_Repository, ServiceLocator)
                     {
                         SaveDelegate = () => m_Repository.SaveChanges(),
                     };
