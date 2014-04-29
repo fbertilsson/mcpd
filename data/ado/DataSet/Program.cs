@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -14,15 +17,21 @@ namespace DataSet
 
         private void Run()
         {
+            BasicExperiments();
+            new OrdersDataSetProgram().Go();
+        }
+
+        private void BasicExperiments()
+        {
             var bookTable = new DataTable("Books");
             var idColumn = new DataColumn("id", typeof (int))
-                {AutoIncrement = true, AutoIncrementSeed = -1, AutoIncrementStep = -1};
+            {AutoIncrement = true, AutoIncrementSeed = -1, AutoIncrementStep = -1};
 
             bookTable.Columns.Add(idColumn);
             bookTable.Columns.Add(new DataColumn("ISBN", typeof (string)));
             bookTable.Columns.Add(new DataColumn("Title", typeof (string)));
             bookTable.Columns.Add(new DataColumn("Author", typeof (string)));
-            bookTable.PrimaryKey = new [] {idColumn};
+            bookTable.PrimaryKey = new[] {idColumn};
 
             const string fileName = "EmptyBookTable.txt";
             bookTable.WriteXml(fileName);
@@ -47,11 +56,9 @@ namespace DataSet
             var serializationStream = File.Create(filename);
             formatter.Serialize(serializationStream, bookTable);
             serializationStream.Close();
-            var bookTableDeserialized = (DataTable)formatter.Deserialize(File.Open(filename, FileMode.Open));
+            var bookTableDeserialized = (DataTable) formatter.Deserialize(File.Open(filename, FileMode.Open));
 
             Print(bookTableDeserialized);
-
-
         }
 
         private void Print(DataTable dataTable)
@@ -69,5 +76,6 @@ namespace DataSet
                 Console.WriteLine();
             }
         }
+
     }
 }

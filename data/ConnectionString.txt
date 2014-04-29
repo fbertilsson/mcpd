@@ -1,0 +1,23 @@
+metadata=res://*/Animals.csdl|res://*/Animals.ssdl|res://*/Animals.msl;
+provider=System.Data.SqlClient;
+provider connection string=&quot;data source=NOFREBER\NOFREBERSQL;initial catalog=Animals;integrated security=True;pooling=False;MultipleActiveResultSets=True;App=EntityFramework&quot;
+
+
+
+<add 
+    name="AnimalsContainer" 
+    connectionString="metadata=res://*/Animals.csdl|res://*/Animals.ssdl|res://*/Animals.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=NOFREBER\NOFREBERSQL;initial catalog=Animals;integrated security=True;pooling=False;MultipleActiveResultSets=True;App=EntityFramework&quot;" 
+    providerName="System.Data.EntityClient" />
+
+connectionString="
+metadata=res://*/Animals.csdl|res://*/Animals.ssdl|res://*/Animals.msl;
+provider=System.Data.SqlClient;
+provider connection string=&quot;data source=NOFREBER\NOFREBERSQL;initial catalog=Animals;integrated security=True;pooling=False;MultipleActiveResultSets=True;App=EntityFramework&quot;" 
+
+provider connection string=&quot;
+data source=NOFREBER\NOFREBERSQL;
+initial catalog=Animals;
+integrated security=True;
+pooling=False;
+MultipleActiveResultSets=True;
+App=EntityFramework&quot;
