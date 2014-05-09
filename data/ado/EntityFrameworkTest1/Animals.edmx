@@ -190,6 +190,21 @@
             aDog.RaceName + " " + aDog.PetName
           </DefiningExpression>
         </Function>
+        <Function Name="MyModelDefinedFunctionAnimalHabitatStrings" ReturnType="Collection(String)">
+          <Parameter Name="aDog" Type="Animals.Dog"/>
+          <!--
+          N.B. "value" - if not used, the return type was a collection of rows, instead of collection of strings.
+               "AnimalsContainer" - needed to compile the esql
+          -->
+          <DefiningExpression>
+            select value h.name from AnimalsContainer.AnimalHabitat as ah, AnimalsContainer.HabitatSet as h 
+            where ah.Animal.Id = aDog.Id
+            and ah.Habitat.Id = h.Id
+            <!--select h.name from AnimalsContainer.HabitatSet as h where h.Animal.Id = aDog.Id-->
+            <!--SELECT h.Name from Animals.AnimalHabitat as ah, Animals.Habitat as h
+            WHERE ah.Animal = aDog and ah.Habitat = h-->
+          </DefiningExpression>
+        </Function>
         <EntityContainer Name="AnimalsContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AnimalSet" EntityType="Animals.Animal"/>
           <EntitySet Name="HabitatSet" EntityType="Animals.Habitat"/>

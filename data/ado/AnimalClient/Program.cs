@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AnimalEntities;
-using EntityFrameworkTest1;
 
 namespace AnimalClient
 {
@@ -30,6 +29,11 @@ namespace AnimalClient
                 var m = new Monkey {MonkeySpecial = "special string", RaceName = "Chimp"};
                 ctx.AnimalSet.Add(m);
 
+                var jungle = new Habitat {Name = "jungle"};
+                var med = new Habitat {Name = "mediterranian"};
+                dog.Habitat.Add(med);
+                dog.Habitat.Add(jungle);
+
                 ctx.SaveChanges();
 
                 searchResult = ctx.DogsSearch("Lo%");
@@ -39,7 +43,14 @@ namespace AnimalClient
                 }
 
                 // Try a model defined function
-                ExecModelDefinedFunction(ctx);
+                try
+                {
+                    ExecModelDefinedFunction(ctx);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
 
                 RemoveAllAnimals(ctx);
             }
@@ -50,7 +61,7 @@ namespace AnimalClient
         private static void ExecModelDefinedFunction(AnimalsContainer ctx)
         {
             // This line produces run-time error because it calls directly: 
-            // var s = EntityFrameworkTest1.AnimalExtensions.MyModelDefinedFunctionRaceNamePlusPetName(dog);
+            // var s = AnimalExtensions.AnimalExtensions.MyModelDefinedFunctionRaceNamePlusPetName(dog);
 
             var dogsFullnames =
                 from aDog in ctx.AnimalSet.OfType<Dog>()
@@ -58,6 +69,17 @@ namespace AnimalClient
             
             foreach (var o in dogsFullnames) {
                 Console.WriteLine("Model defined function - race name plus pet name: {0}", o.FullName);
+            }
+
+            Console.WriteLine("Dogs' habitats:");
+            var dogsHabitats =
+                from aDog in ctx.AnimalSet.OfType<Dog>()
+                select new {Habitats = AnimalExtensions.MyModelDefinedFunctionAnimalHabitatStrings(aDog)};
+            //foreach (var dogHabitats in ctx.AnimalSet.OfType<Dog>()
+            //    .(dog => new {Habitats = AnimalExtensions.MyModelDefinedFunctionAnimalHabitatStrings(dog)}))
+            foreach (var habitatName in dogsHabitats.SelectMany(habitatList => habitatList.Habitats))
+            {
+                Console.WriteLine("  " + habitatName);
             }
         }
 
