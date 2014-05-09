@@ -21,3 +21,27 @@ integrated security=True;
 pooling=False;
 MultipleActiveResultSets=True;
 App=EntityFramework&quot;
+
+
+--------------
+ Oracle 
+   http://www.connectionstrings.com/oracle
+--------------
+MS OLE DB Provider:
+    Standard Security:
+        Provider=msdaora;Data Source=MyOracleDB;User Id=myUsername;Password=myPassword;
+Oracle OLE DB Provider:
+    Standard Security:
+    	Provider=OraOLEDB.Oracle;Data Source=MyOracleDB;User Id=myUsername;Password=myPassword
+    Trusted Connection:
+    	Provider=OraOLEDB.Oracle;Data Source=MyOracleDB;User Id=/
+ODP.NET
+    Easy Connect Naming Method to connect to an Instance	
+	Data Source=username/password@myserver//instancename;
+    Easy Connect Naming Method to connect to a dedicated server instance
+    	Data Source=username/password@myserver/myservice:dedicated/instancename;
+.NET Framework Data Provider for Oracle
+    Standard security
+        Data Source=MyOracleDB;User Id=myUsername;Password=myPassword;Integrated Security=no;
+    Integrated security
+        Data Source=myOracleDB;User Id=/;
