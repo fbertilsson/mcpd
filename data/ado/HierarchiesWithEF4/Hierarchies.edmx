@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Hierarchies.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="HierarchiesStoreContainer">
+    <EntitySet Name="TphAnimalSet" EntityType="Hierarchies.Store.TphAnimalSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TptAnimals" EntityType="Hierarchies.Store.TptAnimals" store:Type="Tables" Schema="dbo" />
+    <!--<EntitySet Name="TphAnimalSet_TphMammal" EntityType="Hierarchies.Store.TphAnimalSet_TphMammal" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TphAnimalSet_TphInsect" EntityType="Hierarchies.Store.TphAnimalSet_TphInsect" store:Type="Tables" Schema="dbo" />-->
+    <EntitySet Name="TptAnimals_TptMammal" EntityType="Hierarchies.Store.TptAnimals_TptMammal" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TptAnimals_TptInsect" EntityType="Hierarchies.Store.TptAnimals_TptInsect" store:Type="Tables" Schema="dbo" />
+    <!--<AssociationSet Name="FK_TphMammal_inherits_TphAnimal" Association="Hierarchies.Store.FK_TphMammal_inherits_TphAnimal">
+      <End Role="TphAnimal" EntitySet="TphAnimalSet" />
+      <End Role="TphMammal" EntitySet="TphAnimalSet_TphMammal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TphInsect_inherits_TphAnimal" Association="Hierarchies.Store.FK_TphInsect_inherits_TphAnimal">
+      <End Role="TphAnimal" EntitySet="TphAnimalSet" />
+      <End Role="TphInsect" EntitySet="TphAnimalSet_TphInsect" />
+    </AssociationSet>-->
+    <AssociationSet Name="FK_TptMammal_inherits_TptAnimal" Association="Hierarchies.Store.FK_TptMammal_inherits_TptAnimal">
+      <End Role="TptAnimal" EntitySet="TptAnimals" />
+      <End Role="TptMammal" EntitySet="TptAnimals_TptMammal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TptInsect_inherits_TptAnimal" Association="Hierarchies.Store.FK_TptInsect_inherits_TptAnimal">
+      <End Role="TptAnimal" EntitySet="TptAnimals" />
+      <End Role="TptInsect" EntitySet="TptAnimals_TptInsect" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TphAnimalSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DaysPregnancy" Type="int" Nullable="true" />
+    <Property Name="AntennaCount" Type="int" Nullable="true" />
+  </EntityType>
+  <!--<EntityType Name="TphAnimalSet_TphMammal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="DaysPregnancy" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>-->
+  <!--<EntityType Name="TphAnimalSet_TphInsect">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="AntennaCount" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>-->
+  <EntityType Name="TptAnimals">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TptAnimals_TptMammal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="DaysPregnancy" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TptAnimals_TptInsect">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="AntennaCount" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <!--<Association Name="FK_TphMammal_inherits_TphAnimal">
+    <End Role="TphAnimal" Type="Hierarchies.Store.TphAnimalSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TphMammal" Type="Hierarchies.Store.TphAnimalSet_TphMammal" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TphAnimal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TphMammal">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TphInsect_inherits_TphAnimal">
+    <End Role="TphAnimal" Type="Hierarchies.Store.TphAnimalSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TphInsect" Type="Hierarchies.Store.TphAnimalSet_TphInsect" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TphAnimal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TphInsect">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>-->
+  <Association Name="FK_TptMammal_inherits_TptAnimal">
+    <End Role="TptAnimal" Type="Hierarchies.Store.TptAnimals" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TptMammal" Type="Hierarchies.Store.TptAnimals_TptMammal" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TptAnimal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TptMammal">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TptInsect_inherits_TptAnimal">
+    <End Role="TptAnimal" Type="Hierarchies.Store.TptAnimals" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TptInsect" Type="Hierarchies.Store.TptAnimals_TptInsect" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TptAnimal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TptInsect">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
+    </edmx:StorageModels>
+    
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Hierarchies" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" >
+        <EntityContainer Name="HierarchiesContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TphAnimalSet" EntityType="Hierarchies.TphAnimal" />
+          <EntitySet Name="TptAnimals" EntityType="Hierarchies.TptAnimal" />
+        </EntityContainer>
+        <EntityType Name="TphAnimal" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TphMammal" BaseType="Hierarchies.TphAnimal">
+          <Property Name="DaysPregnancy" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TphInsect" BaseType="Hierarchies.TphAnimal">
+          <Property Name="AntennaCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TptMammal" BaseType="Hierarchies.TptAnimal">
+          <Property Name="DaysPregnancy" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TptInsect" BaseType="Hierarchies.TptAnimal">
+          <Property Name="AntennaCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TptAnimal" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HierarchiesStoreContainer" CdmEntityContainer="HierarchiesContainer">
+    <EntitySetMapping Name="TphAnimalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Hierarchies.TphAnimal)">
+        <MappingFragment StoreEntitySet="TphAnimalSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(Hierarchies.TphInsect)">
+              <MappingFragment StoreEntitySet="TphAnimalSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AntennaCount" ColumnName="AntennaCount" />
+                <Condition ColumnName="AntennaCount" IsNull="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(Hierarchies.TphMammal)">
+              <MappingFragment StoreEntitySet="TphAnimalSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DaysPregnancy" ColumnName="DaysPregnancy" />
+                <Condition ColumnName="DaysPregnancy" IsNull="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TptAnimals">
+      <EntityTypeMapping TypeName="IsTypeOf(Hierarchies.TptAnimal)">
+        <MappingFragment StoreEntitySet="TptAnimals">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Hierarchies.TptMammal)">
+        <MappingFragment StoreEntitySet="TptAnimals_TptMammal">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DaysPregnancy" ColumnName="DaysPregnancy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Hierarchies.TptInsect)">
+        <MappingFragment StoreEntitySet="TptAnimals_TptInsect">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AntennaCount" ColumnName="AntennaCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

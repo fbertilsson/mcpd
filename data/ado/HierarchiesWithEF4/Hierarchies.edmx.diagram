@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="405483d314f740c1bf1fd6895383a5be" Name="Diagram1" >
+        <EntityTypeShape EntityType="Hierarchies.TphAnimal" Width="1.5" PointX="1.375" PointY="0.5" />
+        <EntityTypeShape EntityType="Hierarchies.TphMammal" Width="1.5" PointX="0.5" PointY="2.625" />
+        <EntityTypeShape EntityType="Hierarchies.TphInsect" Width="1.5" PointX="2.25" PointY="2.625" />
+        <InheritanceConnector EntityType="Hierarchies.TphMammal" />
+        <InheritanceConnector EntityType="Hierarchies.TphInsect" />
+        <EntityTypeShape EntityType="Hierarchies.TptMammal" Width="1.5" PointX="4.5" PointY="2.625" />
+        <EntityTypeShape EntityType="Hierarchies.TptInsect" Width="1.5" PointX="6.375" PointY="2.625" />
+        <EntityTypeShape EntityType="Hierarchies.TptAnimal" Width="1.5" PointX="5.5" PointY="0.625" />
+        <InheritanceConnector EntityType="Hierarchies.TptMammal" />
+        <InheritanceConnector EntityType="Hierarchies.TptInsect" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
