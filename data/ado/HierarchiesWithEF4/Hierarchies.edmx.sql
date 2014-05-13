@@ -48,7 +48,9 @@ GO
 -- Creating table 'TphAnimalSet'
 CREATE TABLE [dbo].[TphAnimalSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
+    [Name] nvarchar(max)  NOT NULL,
+    [AntennaCount] int NULL,
+    [DaysPregnancy] int NULL
 );
 GO
 
@@ -56,20 +58,6 @@ GO
 CREATE TABLE [dbo].[TptAnimals] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL
-);
-GO
-
--- Creating table 'TphAnimalSet_TphMammal'
-CREATE TABLE [dbo].[TphAnimalSet_TphMammal] (
-    [DaysPregnancy] int  NOT NULL,
-    [Id] int  NOT NULL
-);
-GO
-
--- Creating table 'TphAnimalSet_TphInsect'
-CREATE TABLE [dbo].[TphAnimalSet_TphInsect] (
-    [AntennaCount] int  NOT NULL,
-    [Id] int  NOT NULL
 );
 GO
 
@@ -103,18 +91,6 @@ ADD CONSTRAINT [PK_TptAnimals]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'TphAnimalSet_TphMammal'
-ALTER TABLE [dbo].[TphAnimalSet_TphMammal]
-ADD CONSTRAINT [PK_TphAnimalSet_TphMammal]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'TphAnimalSet_TphInsect'
-ALTER TABLE [dbo].[TphAnimalSet_TphInsect]
-ADD CONSTRAINT [PK_TphAnimalSet_TphInsect]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
 -- Creating primary key on [Id] in table 'TptAnimals_TptMammal'
 ALTER TABLE [dbo].[TptAnimals_TptMammal]
 ADD CONSTRAINT [PK_TptAnimals_TptMammal]
@@ -130,24 +106,6 @@ GO
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [Id] in table 'TphAnimalSet_TphMammal'
-ALTER TABLE [dbo].[TphAnimalSet_TphMammal]
-ADD CONSTRAINT [FK_TphMammal_inherits_TphAnimal]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[TphAnimalSet]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Id] in table 'TphAnimalSet_TphInsect'
-ALTER TABLE [dbo].[TphAnimalSet_TphInsect]
-ADD CONSTRAINT [FK_TphInsect_inherits_TphAnimal]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[TphAnimalSet]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
 
 -- Creating foreign key on [Id] in table 'TptAnimals_TptMammal'
 ALTER TABLE [dbo].[TptAnimals_TptMammal]
