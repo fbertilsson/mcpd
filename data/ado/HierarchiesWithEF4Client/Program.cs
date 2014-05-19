@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
+using System.Data.Objects;
 using System.Data.SqlClient;
+using System.Linq;
 using HierarchiesWithEF4;
 
 namespace HierarchiesWithEF4Client
@@ -15,14 +18,62 @@ namespace HierarchiesWithEF4Client
 
         private void Go(string connectionString)
         {
-            using (var ctx = new HierarchiesContainer(connectionString))
+            try
             {
-                GoTph(ctx);
-                GoTpt(ctx);
-                ctx.SaveChanges();
+                using (var ctx = new HierarchiesContainer(connectionString))
+                {
+                    GoTph(ctx);
+                    GoTpt(ctx);
+                    DetachModifyAttach(ctx);
+                    ctx.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
 
+        private void DetachModifyAttach(HierarchiesContainer ctx)
+        {
+            var firstInsect = ctx.TphAnimalSet.OfType<TphInsect>().First();
+            Console.WriteLine("  Antenna count: {1}, State before detaching: {0}", firstInsect.EntityState, firstInsect.AntennaCount);
+            var copy = new TphInsect
+            {
+                Id = firstInsect.Id,
+                Name = firstInsect.Name,
+                AntennaCount = firstInsect.AntennaCount
+            };
+            ctx.TphAnimalSet.Detach(firstInsect);
+            firstInsect.AntennaCount += 1;
+            Console.WriteLine("  Detached and incremented antenna count. State now: {0}", firstInsect.EntityState);
+            ctx.TphAnimalSet.Attach(firstInsect);
+            Console.WriteLine("  Attached. State now: {0}", firstInsect.EntityState);
+            ctx.TphAnimalSet.ApplyOriginalValues(copy);
+            Console.WriteLine("  Applied original values. State now: {0}", firstInsect.EntityState);
+            ctx.Refresh(RefreshMode.ClientWins, firstInsect);
+            Console.WriteLine("  Refreshed. State now: {0}", firstInsect.EntityState);
+            ctx.SaveChanges();
+            Console.WriteLine("  Saved with no options. State now: {0}", firstInsect.EntityState);
+        }
+
+        private void DetachModifyAttachTake1(HierarchiesContainer ctx)
+        {
+            var firstInsect = ctx.TphAnimalSet.OfType<TphInsect>().First();
+            Console.WriteLine("  Antenna count: {1}, State before detaching: {0}", firstInsect.EntityState, firstInsect.AntennaCount);
+            ctx.TphAnimalSet.Detach(firstInsect);
+            firstInsect.AntennaCount += 1;
+            Console.WriteLine("  Detached and incremented antenna count. State now: {0}", firstInsect.EntityState);
+            ctx.TphAnimalSet.Attach(firstInsect);
+            Console.WriteLine("  Attached. State now: {0}", firstInsect.EntityState);
+            ctx.TphAnimalSet.ApplyOriginalValues(firstInsect);
+            Console.WriteLine("  Applied original values. State now: {0}", firstInsect.EntityState);
+            ctx.Refresh(RefreshMode.ClientWins, firstInsect);
+            Console.WriteLine("  Refreshed. State now: {0}", firstInsect.EntityState);
+            ctx.SaveChanges();
+            Console.WriteLine("  Saved with no options. State now: {0}", firstInsect.EntityState);
+        }
+        
         private void GoTph(HierarchiesContainer ctx)
         {
             Console.Write("Add TPH mammal, name? ");
