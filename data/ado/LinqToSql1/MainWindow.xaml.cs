@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Linq;
+﻿using System.Data.Linq;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LinqToSql1
 {
@@ -41,7 +29,13 @@ namespace LinqToSql1
         private void OnRevert(object sender, RoutedEventArgs e)
         {
             m_Context.Refresh(RefreshMode.OverwriteCurrentValues);
-            //TopicsGrid.
+        }
+
+        private void OnMarkForDeletionOnSave(object sender, RoutedEventArgs e)
+        {
+            var topic = m_Context.Topics.First();
+            m_Context.Topics.DeleteOnSubmit(topic);
+            MessageBox.Show("Marked for deletion. Note the popup in the extension point when you save.");
         }
     }
 }

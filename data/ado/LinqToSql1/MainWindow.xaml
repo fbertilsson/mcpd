@@ -5,9 +5,10 @@
     <DockPanel>
         <!--<ToolBar DockPanel.Dock="Top">-->
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File">
-                <MenuItem Header="Save" Click="OnSaveClick"/>
-                <MenuItem Header="Revert" Click="OnRevert"/>
+            <MenuItem Header="_File">
+                <MenuItem Header="_Save" Click="OnSaveClick"/>
+                <MenuItem Header="_Revert" Click="OnRevert"/>
+                <MenuItem Header="_Mark 1:st for deletion on save" Click="OnMarkForDeletionOnSave"/>
             </MenuItem>
         </Menu>
         <!--</ToolBar>-->
