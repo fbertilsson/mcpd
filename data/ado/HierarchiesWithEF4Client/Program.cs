@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
 using System.IO;
@@ -74,7 +75,18 @@ namespace HierarchiesWithEF4Client
                         w = DeleteExtensionPoints(ctx);
                         break;
                 }
-                ctx.SaveChanges();
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (OptimisticConcurrencyException e)
+                {
+                    Console.WriteLine(e);
+                    foreach (ObjectStateEntry item in e.StateEntries)
+                    {
+                        Console.WriteLine("Found an item: {0}", item);
+                    }
+                }
             }
             return w;
         }
@@ -162,6 +174,8 @@ namespace HierarchiesWithEF4Client
             var w = new StringWriter();
             Console.Write("Enter id to delete: ");
             var idString = Console.ReadLine();
+            if (idString == null) return w;
+
             var id = int.Parse(idString);
             var animal = ctx.TphAnimalSet.FirstOrDefault(x => x.Id == id);
             if (animal == null)
