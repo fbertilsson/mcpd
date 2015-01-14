@@ -7,6 +7,7 @@ namespace HistoricEntitiesCodeFirst
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int Importance { get; set; }
         public List<Tag> Tags { get; set; }
         public TimeRef TimeReference { get; set; }
     }

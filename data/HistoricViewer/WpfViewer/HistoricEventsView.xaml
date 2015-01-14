@@ -72,6 +72,11 @@
                 <TextBox Text="{Binding CurrentHistoricEvent.TimeReference.End, StringFormat={}{0:d}, TargetNullValue='-', FallbackValue=''}"
                          Width="150" />
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Importance:</Label>
+                <TextBox Text="{Binding CurrentHistoricEvent.Importance, TargetNullValue='', FallbackValue=''}" 
+                         Width="40"/>
+            </StackPanel>
         </StackPanel>
                     
         <StackPanel 

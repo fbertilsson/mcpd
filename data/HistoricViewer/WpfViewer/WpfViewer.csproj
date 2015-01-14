@@ -100,6 +100,11 @@
       <DependentUpon>ResolveView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resolve\ResolveViewModel.cs" />
+    <Compile Include="TagsTreeView\TagsTreeViewModel.cs" />
+    <Compile Include="TagsTreeView\TagsTreeView.xaml.cs">
+      <DependentUpon>TagsTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TagsTreeView\TagViewModel.cs" />
     <Compile Include="TagsViewModel.cs" />
     <Compile Include="TagsView.xaml.cs">
       <DependentUpon>TagsView.xaml</DependentUpon>
@@ -124,6 +129,10 @@
       <DependentUpon>Shell.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TagsTreeView\TagsTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TagsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +179,7 @@
       <Name>HistoricEntitiesCodeFirst</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

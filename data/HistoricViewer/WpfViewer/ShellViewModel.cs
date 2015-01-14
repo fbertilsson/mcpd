@@ -5,6 +5,7 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Practices.ServiceLocation;
+using WpfViewer.TagsTreeView;
 
 namespace WpfViewer
 {
@@ -44,14 +45,26 @@ namespace WpfViewer
                         return;
                     }
                 }
+
                 var tags = m_Repository.Tags;
-                var tagsModel = new TagsViewModel(tags, m_Repository, ServiceLocator)
+                
+                const bool useTagsTreeView = true;
+                ITagsView tagsView = null;
+                if (!useTagsTreeView)
+                {
+                    var tagsModel = new TagsViewModel(tags, m_Repository, ServiceLocator)
                     {
                         SaveDelegate = () => m_Repository.SaveChanges(),
                     };
-                var tagsView = new TagsView(tagsModel);
-                tagsModel.View = tagsView;
-                tagsModel.CloseDelegate = () => mainRegion.Deactivate(tagsView);
+                    tagsView = new TagsView(tagsModel);
+                    tagsModel.View = tagsView;
+                    tagsModel.CloseDelegate = () => mainRegion.Deactivate(tagsView);
+                }
+                else
+                {
+                    var tagsTreeViewModel = new TagsTreeViewModel(tags, m_Repository, ServiceLocator);
+                    tagsView = new TagsTreeView.TagsTreeView(tagsTreeViewModel);
+                }
 
                 mainRegion.Add(tagsView);
                 mainRegion.Activate(tagsView);
