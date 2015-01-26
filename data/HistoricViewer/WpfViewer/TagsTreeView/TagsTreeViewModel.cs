@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
-using System.Windows;
 using HistoricEntitiesCodeFirst;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.ViewModel;
@@ -28,14 +28,11 @@ namespace WpfViewer.TagsTreeView
             //});
 
             m_Repository = repository;
-            m_Roots = new ObservableCollection<TagViewModel>(
-                (from tag in tags 
-                 where tag.Parent == null
-                 select new TagViewModel { Tag = tag} ).ToList());
-
-            foreach (var tagViewModel in m_Roots)
+            m_Roots = new ObservableCollection<TagViewModel>();
+            foreach (var tag in tags.Include(x => x.Children).Where(t => t.Parent == null))
             {
-                tagViewModel.Repository = m_Repository;
+                var tagViewModel = new TagViewModel(tag, null, m_Repository);
+                m_Roots.Add(tagViewModel);
             }
 
             SaveCommand = new DelegateCommand(OnSave);

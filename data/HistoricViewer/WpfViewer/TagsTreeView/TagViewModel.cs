@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using HistoricEntitiesCodeFirst;
 using Microsoft.Practices.Prism;
@@ -27,29 +26,25 @@ namespace WpfViewer.TagsTreeView
         }
 
 
-        public TagViewModel(Tag tag) : this(tag, null) { }
+        public TagViewModel(Tag tag) : this(tag, null, null) { }
 
-        public TagViewModel(Tag tag, TagViewModel parent) : this()
+        public TagViewModel(Tag tag, TagViewModel parent, Repository repository)
+            : this()
         {
             m_Tag = tag;
             m_Parent = parent;
-            if (tag.Children != null)
+            Repository = repository;
+            if (tag.Children.Any())
             {
                 m_Children.AddRange(
                     (from child in tag.Children
-                        select new TagViewModel(child, this)).ToList());
+                     select new TagViewModel(child, this, repository)).ToList());
             }
-        }
-
-        public TagViewModel(Tag tag, TagViewModel parent, Repository repository)
-            : this(tag, parent)
-        {
-            Repository = repository;
         }
 
         public Repository Repository { get; set; }
 
-        public IEnumerable<TagViewModel> Children
+        public ObservableCollection<TagViewModel> Children
         {
             get { return m_Children; }
         }
