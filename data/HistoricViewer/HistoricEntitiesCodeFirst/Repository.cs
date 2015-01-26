@@ -6,7 +6,7 @@ namespace HistoricEntitiesCodeFirst
     /// <summary>
     /// A thin wrapper around the Entity Framework entity context class.
     /// </summary>
-    public class Repository : IDisposable
+    public class Repository : IRepository, IDisposable
     {
 
         private readonly HistoricEventContext m_Context;

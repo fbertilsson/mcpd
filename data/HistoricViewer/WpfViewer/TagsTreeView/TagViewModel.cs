@@ -28,7 +28,7 @@ namespace WpfViewer.TagsTreeView
 
         public TagViewModel(Tag tag) : this(tag, null, null) { }
 
-        public TagViewModel(Tag tag, TagViewModel parent, Repository repository)
+        public TagViewModel(Tag tag, TagViewModel parent, IRepository repository)
             : this()
         {
             m_Tag = tag;
@@ -42,7 +42,7 @@ namespace WpfViewer.TagsTreeView
             }
         }
 
-        public Repository Repository { get; set; }
+        public IRepository Repository { get; set; }
 
         public ObservableCollection<TagViewModel> Children
         {
@@ -125,11 +125,11 @@ namespace WpfViewer.TagsTreeView
                 Parent = m_Tag
             };
             Repository.Add(newTag);
-            m_Tag.Children.Add(newTag);
-            m_Children.Add(new TagViewModel(newTag)
+            // 2015-01-26 FB: Causes a duplicate child:
+            // m_Tag.Children.Add(newTag); 
+            m_Children.Add(new TagViewModel(newTag, this, Repository)
             {
                 IsSelected = true,
-                Repository = Repository,
             });
             IsExpanded = true;
             IsSelected = false;

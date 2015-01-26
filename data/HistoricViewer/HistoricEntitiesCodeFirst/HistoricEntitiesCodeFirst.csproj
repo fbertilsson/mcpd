@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="HistoricEvent.cs" />
     <Compile Include="HistoricEventContext.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
   </ItemGroup>
