@@ -14,6 +14,12 @@ namespace HistoricEntitiesCodeFirst
 
     public class Tag
     {
+        public Tag()
+        {
+            Children = new List<Tag>();
+            HistoricEvents = new List<HistoricEvent>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public Tag Parent { get; set; }

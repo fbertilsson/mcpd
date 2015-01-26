@@ -2,40 +2,52 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using HistoricEntitiesCodeFirst;
+using Microsoft.Practices.Prism;
+using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.ViewModel;
 
 namespace WpfViewer.TagsTreeView
 {
     public class TagViewModel : NotificationObject
     {
-        private readonly IReadOnlyCollection<TagViewModel> m_Children;
+        public DelegateCommand AddChildCommand { get; private set; }
+
+        private readonly ObservableCollection<TagViewModel> m_Children;
         private bool m_IsSelected;
         private bool m_IsExpanded;
         private readonly TagViewModel m_Parent;
         private Tag m_Tag;
-        private bool m_IsEditing;
+        private bool m_IsReadOnly;
+        
 
         public TagViewModel()
-        {            
+        {
+            m_Children = new ObservableCollection<TagViewModel>();
+            AddChildCommand = new DelegateCommand(OnAddChild);
         }
+
 
         public TagViewModel(Tag tag) : this(tag, null) { }
 
-        public TagViewModel(Tag tag, TagViewModel parent)
+        public TagViewModel(Tag tag, TagViewModel parent) : this()
         {
             m_Tag = tag;
             m_Parent = parent;
-            if (tag.Children == null)
+            if (tag.Children != null)
             {
-                m_Children = new List<TagViewModel>();
-            }
-            else
-            {
-                m_Children = new ReadOnlyCollection<TagViewModel>(
+                m_Children.AddRange(
                     (from child in tag.Children
                         select new TagViewModel(child, this)).ToList());
             }
         }
+
+        public TagViewModel(Tag tag, TagViewModel parent, Repository repository)
+            : this(tag, parent)
+        {
+            Repository = repository;
+        }
+
+        public Repository Repository { get; set; }
 
         public IEnumerable<TagViewModel> Children
         {
@@ -93,21 +105,41 @@ namespace WpfViewer.TagsTreeView
                 {
                     m_IsSelected = value;
                     RaisePropertyChanged(() => IsSelected);
+                    m_IsReadOnly = !value;
                 }
             }
         }
 
-        public bool IsEditing
+        public bool IsReadOnly
         {
-            get { return m_IsEditing; }
+            get { return m_IsReadOnly; }
             set
             {
-                if (value.Equals(m_IsEditing)) return;
-                m_IsEditing = value;
-                RaisePropertyChanged(() => IsEditing);
+                if (value.Equals(m_IsReadOnly)) return;
+                m_IsReadOnly = value;
+                RaisePropertyChanged(() => IsReadOnly);
             }
         }
 
+
+        private void OnAddChild()
+        {
+            var newTag = new Tag
+            {
+                Name = "New child",
+                Parent = m_Tag
+            };
+            Repository.Add(newTag);
+            m_Tag.Children.Add(newTag);
+            m_Children.Add(new TagViewModel(newTag)
+            {
+                IsSelected = true,
+                Repository = Repository,
+            });
+            IsExpanded = true;
+            IsSelected = false;
+        }
+        
         public Tag Tag
         {
             get { return m_Tag; }

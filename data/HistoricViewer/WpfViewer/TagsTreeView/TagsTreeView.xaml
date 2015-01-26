@@ -7,34 +7,83 @@
              d:DesignHeight="200" 
              d:DesignWidth="200">
     
-    <TreeView ItemsSource="{Binding Roots}">
-        <TreeView.ItemContainerStyle>
-            <!-- 
-                This Style binds a TreeViewItem to a PersonViewModel. 
-            -->
-            <Style TargetType="{x:Type TreeViewItem}">
-                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
-                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
-                <Setter Property="FontWeight" Value="Normal" />
-                <Style.Triggers>
-                    <Trigger Property="IsSelected" Value="True">
-                        <Setter Property="FontWeight" Value="Bold" />
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-        </TreeView.ItemContainerStyle>
+    <DockPanel 
+        LastChildFill="True">
+        <StackPanel 
+            DockPanel.Dock="Bottom"
+            Orientation="Horizontal">
 
-        <TreeView.ItemTemplate>
-            <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                <TextBlock Text="{Binding Name}" />
-                <!--TODO trigger to use TextBox when IsEditing-->
-            </HierarchicalDataTemplate>
-        </TreeView.ItemTemplate>
+            <Button
+                Content="Save"
+                Command="{Binding SaveCommand}"
+                />
+        </StackPanel>
 
-        <TreeView.ContextMenu>
-            <ContextMenu>
-                <MenuItem Header="Add..." Click="OnMenuItemAdd"/>
-            </ContextMenu>
-        </TreeView.ContextMenu>
-    </TreeView>
+        
+        <TreeView ItemsSource="{Binding Roots, NotifyOnSourceUpdated=True}">
+            <!--<TreeView.Resources>
+                <Style BasedOn="{StaticResource {x:Type TreeViewItem}}" TargetType="TreeViewItem">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" />
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        --><!-- Must use RelativeSource, since we can't TwoWay bind without a Path --><!--
+                                        <TextBox 
+                                            Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type TreeViewItem}}, Path=Header}" 
+                                            FontWeight="Bold"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.Resources>-->
+
+            <TreeView.ItemContainerStyle>
+                <!-- 
+                    This Style binds a TreeViewItem to a ViewModel. 
+                -->
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.ItemContainerStyle>
+
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <TextBox 
+                        Text="{Binding Name}" 
+                        IsReadOnly="{Binding IsReadOnly}"
+                        KeyDown="UIElement_OnKeyDown">
+                        <TextBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Add child..." Command="{Binding AddChildCommand}"/>
+                            </ContextMenu>
+                        </TextBox.ContextMenu>
+                    </TextBox>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+
+            <TreeView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add..." Click="OnMenuItemAdd"/>
+                </ContextMenu>
+            </TreeView.ContextMenu>
+        </TreeView>
+        
+    </DockPanel>
 </UserControl>

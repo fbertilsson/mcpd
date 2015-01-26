@@ -1,12 +1,17 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using HistoricEntitiesCodeFirst;
+using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Practices.ServiceLocation;
 
 namespace WpfViewer.TagsTreeView
 {
-    public class TagsTreeViewModel
+    public class TagsTreeViewModel : NotificationObject
     {
+        public DelegateCommand SaveCommand { get; private set; }
         private readonly ObservableCollection<TagViewModel> m_Roots;
         private readonly Repository m_Repository;
 
@@ -27,6 +32,25 @@ namespace WpfViewer.TagsTreeView
                 (from tag in tags 
                  where tag.Parent == null
                  select new TagViewModel { Tag = tag} ).ToList());
+
+            foreach (var tagViewModel in m_Roots)
+            {
+                tagViewModel.Repository = m_Repository;
+            }
+
+            SaveCommand = new DelegateCommand(OnSave);
+        }
+
+        private void OnSave()
+        {
+            try
+            {
+                m_Repository.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                var x = e; // TODO FB
+            }
         }
 
         public ObservableCollection<TagViewModel> Roots
@@ -38,7 +62,12 @@ namespace WpfViewer.TagsTreeView
         {
             var newTag = new Tag {Name = name};
             m_Repository.Add(newTag);
-            m_Roots.Add(new TagViewModel(newTag) { IsEditing = true });
+            m_Roots.Add(new TagViewModel(newTag)
+            {
+                IsReadOnly = false,
+                IsSelected = true,
+                Repository = m_Repository,
+            });
         }
     }
 }
