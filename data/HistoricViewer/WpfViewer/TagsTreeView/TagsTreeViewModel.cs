@@ -9,13 +9,13 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace WpfViewer.TagsTreeView
 {
-    public class TagsTreeViewModel : NotificationObject
+    public class TagsTreeViewModel : NotificationObject, ITagParent
     {
         public DelegateCommand SaveCommand { get; private set; }
         private readonly ObservableCollection<TagViewModel> m_Roots;
-        private readonly Repository m_Repository;
+        private readonly IRepository m_Repository;
 
-        public TagsTreeViewModel(IQueryable<Tag> tags, Repository repository, IServiceLocator serviceLocator)
+        public TagsTreeViewModel(IQueryable<Tag> tags, IRepository repository, IServiceLocator serviceLocator)
         {
             // TODO remove
             //var a1 = new Tag { Name = "a1" };
@@ -65,6 +65,11 @@ namespace WpfViewer.TagsTreeView
                 IsSelected = true,
                 Repository = m_Repository,
             });
+        }
+
+        public void DeleteChild(TagViewModel child)
+        {
+            m_Roots.Remove(child);
         }
     }
 }

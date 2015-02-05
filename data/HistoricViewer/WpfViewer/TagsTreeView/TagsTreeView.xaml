@@ -71,7 +71,8 @@
                         KeyDown="UIElement_OnKeyDown">
                         <TextBox.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="Add child..." Command="{Binding AddChildCommand}"/>
+                                <MenuItem Header="Add child" Command="{Binding AddChildCommand}"/>
+                                <MenuItem Header="Delete" Command="{Binding DeleteCommand}"/>
                             </ContextMenu>
                         </TextBox.ContextMenu>
                     </TextBox>

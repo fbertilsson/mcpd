@@ -100,6 +100,7 @@
       <DependentUpon>ResolveView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resolve\ResolveViewModel.cs" />
+    <Compile Include="TagsTreeView\ITagParent.cs" />
     <Compile Include="TagsTreeView\TagsTreeViewModel.cs" />
     <Compile Include="TagsTreeView\TagsTreeView.xaml.cs">
       <DependentUpon>TagsTreeView.xaml</DependentUpon>
