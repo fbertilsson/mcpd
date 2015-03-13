@@ -7,6 +7,9 @@
              d:DesignHeight="300" d:DesignWidth="500">
     <UserControl.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
             <Style x:Key="TextBlockStyle" TargetType="TextBlock">
                 <Setter Property="Margin" Value="5,0" />
             </Style>
@@ -21,7 +24,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <Label>Historic Events</Label>
+        <Label 
+            Style="{StaticResource HeadingLabel}"
+            Content="Historic Events"/>
         <!--<DataGrid Grid.Row="1" 
                   ItemsSource="{Binding HistoricEvents.Local}"
                   SelectedItem="{Binding CurrentHistoricEvent}"
@@ -56,7 +61,11 @@
                     
                 </ResourceDictionary>
             </StackPanel.Resources>
-            <TextBlock>Event details:</TextBlock>
+            
+            <Label 
+                Style="{StaticResource Heading2Label}" 
+                Content="Event details:"/>
+            
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label>Name:</Label>
