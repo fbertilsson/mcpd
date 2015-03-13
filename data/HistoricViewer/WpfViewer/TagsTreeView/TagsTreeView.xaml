@@ -6,7 +6,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="200" 
              d:DesignWidth="200">
-    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <DockPanel 
         LastChildFill="True">
         <StackPanel 
@@ -19,7 +26,12 @@
                 />
         </StackPanel>
 
-        
+        <StackPanel
+            DockPanel.Dock ="Top">
+            <Label
+                Content="Tags"
+                Style="{StaticResource HeadingLabel}"/>
+        </StackPanel>
         <TreeView ItemsSource="{Binding Roots, NotifyOnSourceUpdated=True}">
             <!--<TreeView.Resources>
                 <Style BasedOn="{StaticResource {x:Type TreeViewItem}}" TargetType="TreeViewItem">
