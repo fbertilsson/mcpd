@@ -1,6 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D70703C7-0098-4CAC-9178-08333DA30EBD}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wshttp1", "wshttp1\wshttp1.csproj", "{2D18F08B-9A76-4274-96EA-BA222110EB95}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientWithRef", "ClientWithRef\ClientWithRef.csproj", "{3CF2B895-74DB-49CB-A417-33C2DEFF6071}"
@@ -42,13 +51,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContractClient", "DataContractClient\DataContractClient.csproj", "{609CC6C0-43ED-4C5C-8419-3C87D8A236C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracing", "Tracing\Tracing.csproj", "{76C702FA-5EFA-46BC-8887-B09EE4BE5871}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D70703C7-0098-4CAC-9178-08333DA30EBD}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomBinding", "CustomBinding\CustomBinding.csproj", "{4754FD5B-B242-4E05-A6BA-F78E1AD64A7C}"
 EndProject
